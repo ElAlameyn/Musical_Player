@@ -21,9 +21,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COFEE PLAYER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikq-D6-Tku">
-                                <rect key="frame" x="122" y="363" width="170.5" height="30"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COFEE PLAYER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikq-D6-Tku">
+                                <rect key="frame" x="71.5" y="359.5" width="211.5" height="37"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by Artiom Kalinkin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldl-5s-lyH">
+                                <rect key="frame" x="128" y="404.5" width="155" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -31,8 +37,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ldl-5s-lyH" firstAttribute="trailing" secondItem="Ikq-D6-Tku" secondAttribute="trailing" id="3Yw-o1-S4e"/>
                             <constraint firstItem="Ikq-D6-Tku" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-70" id="S35-Od-j0D"/>
-                            <constraint firstItem="Ikq-D6-Tku" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xmn-OI-jN2"/>
+                            <constraint firstItem="Ikq-D6-Tku" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-30" id="Xmn-OI-jN2"/>
+                            <constraint firstItem="Ldl-5s-lyH" firstAttribute="top" secondItem="Ikq-D6-Tku" secondAttribute="bottom" constant="8" symbolic="YES" id="d6C-tf-KZR"/>
                         </constraints>
                     </view>
                 </viewController>
