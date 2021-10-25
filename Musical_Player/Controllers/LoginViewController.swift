@@ -17,19 +17,24 @@ class LoginViewController: UIViewController, CALayerDelegate {
   
   @IBAction func continueButtonTapped(_ sender: Any) {
     guard let password = passwordTextField.text, let email = emailTextField.text else { return }
-      if let userDefPassword = UserDefaults.standard.string(forKey: "userPassword"), let userDefEmail = UserDefaults.standard.string(forKey: "userEmail") {
-        if password == userDefPassword && email == userDefEmail {
-          print("Login succeeded")
-        } else {
-          print("Login failed")
-        }
+    if let userDefPassword = UserDefaults.standard.string(forKey: Const.password), let userDefEmail = UserDefaults.standard.string(forKey: Const.email) {
+      if password == userDefPassword && email == userDefEmail {
+        print("Login succeeded")
+        let vc = BaseViewController()
+        navigationController?.pushViewController(vc, animated: true)
+      } else {
+        print("Login failed")
       }
     }
-
+  }
+  
   
   @IBAction func signButtonTapped(_ sender: UIButton) {
+    passwordTextField.text = ""
+    emailTextField.text = ""
+    
     let vc = SignUpViewController()
-//    vc.presentationController?.shouldPresentInFullscreen
     navigationController?.pushViewController(vc, animated: true)
   }
 }
+

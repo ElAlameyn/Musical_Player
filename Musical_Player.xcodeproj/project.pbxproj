@@ -45,6 +45,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5322A502726910100EF5841 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B52666F327199FDB00A55A48 /* BaseViewController.swift */,
+				B5FDF24127119F4100B1AF38 /* LoginViewController.swift */,
+				B5E529C2272468CC0060CEBC /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B5322A512726911000EF5841 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				B5B34932270E207C00E7DE1C /* AppDelegate.swift */,
+				B5B34934270E207C00E7DE1C /* SceneDelegate.swift */,
+				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		B5322A522726912C00EF5841 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5E529C3272468CC0060CEBC /* SignUpViewController.xib */,
+				B5FDF24227119F4100B1AF38 /* LoginViewController.xib */,
+				B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */,
+				B56FCAE0271C641D002CEA5E /* DesignableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B5B34926270E207B00E7DE1C = {
 			isa = PBXGroup;
 			children = (
@@ -64,35 +95,12 @@
 		B5B34931270E207C00E7DE1C /* Musical_Player */ = {
 			isa = PBXGroup;
 			children = (
-				B5E529C6272468D70060CEBC /* SignUpViewController */,
-				B5E529C1272468750060CEBC /* LoginViewController */,
-				B5B34932270E207C00E7DE1C /* AppDelegate.swift */,
-				B5B34934270E207C00E7DE1C /* SceneDelegate.swift */,
-				B56FCAE0271C641D002CEA5E /* DesignableView.swift */,
-				B52666F327199FDB00A55A48 /* BaseViewController.swift */,
-				B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */,
+				B5322A512726911000EF5841 /* Resourses */,
+				B5322A522726912C00EF5841 /* Views */,
+				B5322A502726910100EF5841 /* Controllers */,
 				B5B34940270E207F00E7DE1C /* Info.plist */,
-				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
 			);
 			path = Musical_Player;
-			sourceTree = "<group>";
-		};
-		B5E529C1272468750060CEBC /* LoginViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B5FDF24127119F4100B1AF38 /* LoginViewController.swift */,
-				B5FDF24227119F4100B1AF38 /* LoginViewController.xib */,
-			);
-			path = LoginViewController;
-			sourceTree = "<group>";
-		};
-		B5E529C6272468D70060CEBC /* SignUpViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B5E529C2272468CC0060CEBC /* SignUpViewController.swift */,
-				B5E529C3272468CC0060CEBC /* SignUpViewController.xib */,
-			);
-			path = SignUpViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
