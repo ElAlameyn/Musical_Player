@@ -11,27 +11,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
   
-  let loginVC: LoginViewController = {
-    let vc = LoginViewController()
-    return vc
-  }()
-  
-  let baseVC: BaseViewController = {
-    let vc = BaseViewController()
-    return vc
-  }()
+//  let loginVC: LoginViewController = {
+//    let vc = LoginViewController()
+//    return vc
+//  }()
+//
+//  let baseVC: BaseViewController = {
+//    let vc = BaseViewController()
+//    return vc
+//  }()
   
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    let navVC = UINavigationController(rootViewController: loginVC)
+    let navVC = UINavigationController(rootViewController: SpotifyLoginVC())
     navVC.setNavigationBarHidden(true, animated: false)
     window?.rootViewController = navVC
     window?.makeKeyAndVisible()
+    
   }
   
+
   func sceneDidDisconnect(_ scene: UIScene) {
     // Called as the scene is being released by the system.
     // This occurs shortly after the scene enters the background, or when its session is discarded.

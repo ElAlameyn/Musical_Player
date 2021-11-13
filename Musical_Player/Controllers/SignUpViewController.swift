@@ -7,73 +7,99 @@
 
 import UIKit
 
-enum Const {
-  static let userName = "userName"
-  static let email = "userEmail"
-  static let password = "userPassword"
-}
 
-class SignUpViewController: UIViewController {
-  @IBOutlet var userNameTextField: UITextField!
-  @IBOutlet var emailTextField: UITextField!
-  @IBOutlet var passwordTextField: UITextField!
-  @IBOutlet var confirmPasswordField: UITextField!
+class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  enum Cell {
+    case title, userNameInput, emailInput, passwordInput, confirmPasswordInput,button
+  }
+  
+  @IBOutlet var tableView: UITableView!
+  
+  private let cells: [Cell] = [.title, .userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .button]
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-  @IBAction func signButtonTapped(_ sender: Any) {
-    guard let userName = userNameTextField.text,
-          let email = emailTextField.text,
-          let password = passwordTextField.text,
-          passwordTextField.text == confirmPasswordField.text else {
-           print("Login failed")
-            return
-          }
+    let memberView = UIView()
+    memberView.backgroundColor = .red
     
+    view.addSubview(memberView)
+    
+    memberView.translatesAutoresizingMaskIntoConstraints = false
+    memberView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+    memberView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+    memberView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    memberView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+    tableView.registerNib(cellClass: TitleCell.self, bundle: .main)
+    tableView.registerNib(cellClass: InputCell.self, bundle: .main)
+    tableView.registerNib(cellClass: ButtonCell.self, bundle: .main)
+
+    tableView.delegate = self
+    tableView.dataSource = self
+    // Do any additional setup after loading the view.
+  }
+  
+  @objc func signButtonTapped(_ sender: Any) {
+    guard
+      let userName = (tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? InputCell)?.getValue(),
+      let email = (tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? InputCell)?.getValue(),
+      let password = (tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? InputCell)?.getValue()
+    else { return }
+
     if email.isValidEmail() && password.isValidPassword() && userName.isValidUserName() {
-      UserDefaults.standard.set(userName, forKey: Const.userName)
-      UserDefaults.standard.set(email, forKey: Const.email)
-      UserDefaults.standard.set(password, forKey: Const.password)
-      print("Login succeded")
+      StorageManager.shared.saveUserInfo(userName: userName, email: email, password: password)
+      print("Registration succeeded")
       
-      let vc = BaseViewController()
-      navigationController?.pushViewController(vc, animated: true)
+      let baseViewController = BaseViewController()
+      navigationController?.pushViewController(baseViewController, animated: true)
     } else {
-      print("login failed")
+      print("registration failed")
     }
   }
   
   @IBAction func loginButtonTapped(_ sender: Any) {
-    userNameTextField.text = ""
-    emailTextField.text = ""
-    confirmPasswordField.text = ""
+    //    userNameTextField.text = ""
+    //    emailTextField.text = ""
+    //    confirmPasswordField.text = ""
     
     navigationController?.popViewController(animated: true)
   }
   
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    cells.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    switch cells[indexPath.row] {
+    case .title:
+      let cell: TitleCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      return cell
+    case .userNameInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "User Name")
+      return cell
+    case .emailInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Email")
+      return cell
+    case .passwordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Password")
+      return cell
+    case .confirmPasswordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Confirm Password")
+      return cell
+    case .button:
+      let cell: ButtonCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.button.addTarget(self, action: #selector(signButtonTapped), for: .touchUpInside)
+      return cell
+    }
+  }
+  
 }
 
-extension String {
 
-  func isValidEmail() -> Bool {
-    // here, `try!` will always succeed because the pattern is valid
-    let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
-    return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
-  }
-  
-  // Minimum 8 characters at least 1 Alphabet and 1 Number
-  func isValidPassword() -> Bool {
-      let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-      return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: self)
-  }
-  
-  func isValidUserName() -> Bool {
-    let userNameRegex = "^\\w{7,18}$"
-    return NSPredicate(format: "SELF MATCHES %@", userNameRegex).evaluate(with: self)
-  }
-  
-}
 

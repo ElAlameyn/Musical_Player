@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InputCell" rowHeight="82" id="fzd-DH-6WC" customClass="InputCell" customModule="Musical_Player" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fzd-DH-6WC" id="iDN-0s-igq">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-ba-Nba" customClass="DesignableView" customModule="Musical_Player" customModuleProvider="target">
+                        <rect key="frame" x="30" y="15" width="354" height="50"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5KA-bK-cjv">
+                                <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5KA-bK-cjv" secondAttribute="bottom" id="Kq5-CP-R42"/>
+                            <constraint firstItem="5KA-bK-cjv" firstAttribute="top" secondItem="vzu-ba-Nba" secondAttribute="top" id="cCN-I0-jb5"/>
+                            <constraint firstItem="5KA-bK-cjv" firstAttribute="leading" secondItem="vzu-ba-Nba" secondAttribute="leading" id="fSF-Lq-VHb"/>
+                            <constraint firstAttribute="bottom" secondItem="5KA-bK-cjv" secondAttribute="bottom" id="g2g-1y-70n"/>
+                            <constraint firstItem="5KA-bK-cjv" firstAttribute="top" secondItem="vzu-ba-Nba" secondAttribute="top" id="qGA-Z2-YoA"/>
+                            <constraint firstAttribute="trailing" secondItem="5KA-bK-cjv" secondAttribute="trailing" id="xFs-pz-GeT"/>
+                            <constraint firstAttribute="height" constant="50" id="xRG-d2-lP9"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                <real key="value" value="-1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.10000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vzu-ba-Nba" firstAttribute="top" secondItem="iDN-0s-igq" secondAttribute="top" constant="15" id="3Rx-hu-gwY"/>
+                    <constraint firstAttribute="bottom" secondItem="vzu-ba-Nba" secondAttribute="bottom" constant="10" id="QBl-fZ-kC8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vzu-ba-Nba" secondAttribute="trailing" constant="10" id="Wf8-4H-e9O"/>
+                    <constraint firstItem="vzu-ba-Nba" firstAttribute="leading" secondItem="iDN-0s-igq" secondAttribute="leadingMargin" constant="10" id="n0g-pX-ITy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="inputTextField" destination="5KA-bK-cjv" id="VJ4-nC-st4"/>
+            </connections>
+            <point key="canvasLocation" x="-460.86956521739131" y="-664.95535714285711"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

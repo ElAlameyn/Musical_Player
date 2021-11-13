@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,10 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Musical_Player" customModuleProvider="target">
             <connections>
-                <outlet property="confirmPasswordField" destination="6Bs-t9-pjZ" id="yAo-sb-UOt"/>
-                <outlet property="emailTextField" destination="SxQ-aw-WHl" id="imB-i3-hLA"/>
-                <outlet property="passwordTextField" destination="oOh-YZ-PXq" id="nYK-qf-URn"/>
-                <outlet property="userNameTextField" destination="C0z-04-ytI" id="Rm2-Xk-QvM"/>
+                <outlet property="tableView" destination="XIT-e2-fUL" id="ytr-76-acj"/>
                 <outlet property="view" destination="A75-ic-24p" id="YL0-Un-Xk3"/>
             </connections>
         </placeholder>
@@ -23,237 +20,26 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-Fq-Aqm" userLabel="main stack">
-                    <rect key="frame" x="41" y="54" width="346" height="462"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1O-WF-5kF">
-                            <rect key="frame" x="0.0" y="8" width="338" height="50"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an account here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbo-94-Q4E">
-                            <rect key="frame" x="0.0" y="74" width="338" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvj-mS-yL1" customClass="DesignableView" customModule="Musical_Player" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="140" width="338" height="50"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C0z-04-ytI" userLabel="User name">
-                                    <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="d5g-RW-QC8"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="C0z-04-ytI" secondAttribute="bottom" id="5XB-y4-Vev"/>
-                                <constraint firstAttribute="trailing" secondItem="C0z-04-ytI" secondAttribute="trailing" id="6ac-H1-ENS"/>
-                                <constraint firstItem="C0z-04-ytI" firstAttribute="top" secondItem="bvj-mS-yL1" secondAttribute="top" id="9Kr-rO-moT"/>
-                                <constraint firstItem="C0z-04-ytI" firstAttribute="leading" secondItem="bvj-mS-yL1" secondAttribute="leading" id="lEf-qZ-SRU"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                    <real key="value" value="-3"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                    <real key="value" value="0.10000000000000001"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-nz-8oJ" customClass="DesignableView" customModule="Musical_Player" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="206" width="338" height="50"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxQ-aw-WHl">
-                                    <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="yBM-bP-YRg"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="SxQ-aw-WHl" firstAttribute="top" secondItem="pVa-nz-8oJ" secondAttribute="top" id="0eP-ia-uo7"/>
-                                <constraint firstAttribute="bottom" secondItem="SxQ-aw-WHl" secondAttribute="bottom" id="nAt-db-ltv"/>
-                                <constraint firstAttribute="trailing" secondItem="SxQ-aw-WHl" secondAttribute="trailing" id="tnS-vg-Cd7"/>
-                                <constraint firstItem="SxQ-aw-WHl" firstAttribute="leading" secondItem="pVa-nz-8oJ" secondAttribute="leading" id="vaa-dE-8Bd"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                    <real key="value" value="-3"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                    <real key="value" value="0.10000000000000001"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRn-HD-4Dt" customClass="DesignableView" customModule="Musical_Player" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="272" width="338" height="50"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOh-YZ-PXq">
-                                    <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="oOh-YZ-PXq" firstAttribute="leading" secondItem="zRn-HD-4Dt" secondAttribute="leading" id="YGa-5x-cfe"/>
-                                <constraint firstItem="oOh-YZ-PXq" firstAttribute="top" secondItem="zRn-HD-4Dt" secondAttribute="top" id="jhi-rl-etu"/>
-                                <constraint firstAttribute="bottom" secondItem="oOh-YZ-PXq" secondAttribute="bottom" id="kQa-mo-vNr"/>
-                                <constraint firstAttribute="trailing" secondItem="oOh-YZ-PXq" secondAttribute="trailing" id="m91-m7-q7Q"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                    <integer key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                    <real key="value" value="0.10000000000000001"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                    <integer key="value" value="-3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfo-ag-78k" customClass="DesignableView" customModule="Musical_Player" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="338" width="338" height="50"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Bs-t9-pjZ" userLabel="Confirm password">
-                                    <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="6Bs-t9-pjZ" secondAttribute="trailing" id="Lam-xf-l1q"/>
-                                <constraint firstAttribute="bottom" secondItem="6Bs-t9-pjZ" secondAttribute="bottom" id="Oya-U8-PoY"/>
-                                <constraint firstItem="6Bs-t9-pjZ" firstAttribute="leading" secondItem="Qfo-ag-78k" secondAttribute="leading" id="Pgx-Cs-s9J"/>
-                                <constraint firstItem="6Bs-t9-pjZ" firstAttribute="top" secondItem="Qfo-ag-78k" secondAttribute="top" id="vcL-qu-Mfw"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                    <integer key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                    <real key="value" value="0.10000000000000001"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                    <integer key="value" value="-3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFS-cn-iJP">
-                            <rect key="frame" x="0.0" y="404" width="338" height="50"/>
-                            <color key="tintColor" systemColor="systemBrownColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Forgot password?">
-                                <fontDescription key="titleFontDescription" type="system" weight="thin" pointSize="14"/>
-                            </buttonConfiguration>
-                        </button>
-                    </subviews>
-                    <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
-                </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPl-Ps-bgY">
-                    <rect key="frame" x="0.0" y="516" width="428" height="348"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2d-vL-3EH">
-                            <rect key="frame" x="343" y="152" width="44" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="44" id="GK6-DW-RUO"/>
-                                <constraint firstAttribute="height" constant="44" id="IYT-oA-6XT"/>
-                            </constraints>
-                            <color key="tintColor" systemColor="systemBrownColor"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="Shape">
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="signButtonTapped:" destination="-1" eventType="touchUpInside" id="dbu-PD-uz1"/>
-                            </connections>
-                        </button>
-                    </subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XIT-e2-fUL">
+                    <rect key="frame" x="0.0" y="44" width="428" height="848"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="a2d-vL-3EH" firstAttribute="centerY" secondItem="YPl-Ps-bgY" secondAttribute="centerY" id="1sA-U3-kpB"/>
-                        <constraint firstAttribute="trailing" secondItem="a2d-vL-3EH" secondAttribute="trailing" constant="41" id="7gh-hS-I67"/>
-                    </constraints>
-                </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qfl-st-Joz">
-                    <rect key="frame" x="41" y="864" width="346" height="18"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOp-oJ-Sbe">
-                            <rect key="frame" x="0.0" y="0.0" width="243.66666666666666" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" systemColor="opaqueSeparatorColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OjG-P6-Vfw">
-                            <rect key="frame" x="251.66666666666671" y="0.0" width="94.333333333333343" height="18"/>
-                            <color key="tintColor" systemColor="systemBrownColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Log in">
-                                <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="9Vc-io-Jmc"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="9F8-fb-wb1"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="qfl-st-Joz" firstAttribute="bottom" secondItem="9F8-fb-wb1" secondAttribute="bottom" constant="-10" id="4n4-5g-kSA"/>
-                <constraint firstItem="9F8-fb-wb1" firstAttribute="trailing" secondItem="qfl-st-Joz" secondAttribute="trailing" constant="41" id="CWO-ke-ZtD"/>
-                <constraint firstItem="qfl-st-Joz" firstAttribute="leading" secondItem="9F8-fb-wb1" secondAttribute="leading" constant="41" id="D9R-CU-Czc"/>
-                <constraint firstItem="q2o-Fq-Aqm" firstAttribute="top" secondItem="9F8-fb-wb1" secondAttribute="top" constant="10" id="HQJ-Rh-E6K"/>
-                <constraint firstItem="q2o-Fq-Aqm" firstAttribute="leading" secondItem="9F8-fb-wb1" secondAttribute="leading" constant="41" id="Hiq-6e-KkH"/>
-                <constraint firstItem="YPl-Ps-bgY" firstAttribute="leading" secondItem="9F8-fb-wb1" secondAttribute="leading" id="LKa-Ig-JFY"/>
-                <constraint firstItem="9F8-fb-wb1" firstAttribute="trailing" secondItem="q2o-Fq-Aqm" secondAttribute="trailing" constant="41" id="fdU-Fa-Lqi"/>
-                <constraint firstItem="YPl-Ps-bgY" firstAttribute="top" secondItem="q2o-Fq-Aqm" secondAttribute="bottom" id="uhT-fZ-NMc"/>
-                <constraint firstItem="YPl-Ps-bgY" firstAttribute="bottom" secondItem="qfl-st-Joz" secondAttribute="top" id="wVM-2S-P4c"/>
-                <constraint firstItem="YPl-Ps-bgY" firstAttribute="trailing" secondItem="9F8-fb-wb1" secondAttribute="trailing" id="y6D-C0-bfV"/>
+                <constraint firstItem="9F8-fb-wb1" firstAttribute="trailing" secondItem="XIT-e2-fUL" secondAttribute="trailing" id="8DV-9d-y2Q"/>
+                <constraint firstItem="XIT-e2-fUL" firstAttribute="leading" secondItem="9F8-fb-wb1" secondAttribute="leading" id="KYC-1N-tAp"/>
+                <constraint firstItem="9F8-fb-wb1" firstAttribute="bottom" secondItem="XIT-e2-fUL" secondAttribute="bottom" id="XWD-9Y-Xwg"/>
+                <constraint firstItem="XIT-e2-fUL" firstAttribute="top" secondItem="9F8-fb-wb1" secondAttribute="top" id="ytB-Iq-1cW"/>
             </constraints>
             <point key="canvasLocation" x="-890" y="-412"/>
         </view>
     </objects>
     <resources>
-        <image name="Shape" width="100" height="101"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
