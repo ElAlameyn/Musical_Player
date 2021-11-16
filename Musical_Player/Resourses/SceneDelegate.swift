@@ -10,24 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
-  
-//  let loginVC: LoginViewController = {
-//    let vc = LoginViewController()
-//    return vc
-//  }()
-//
-//  let baseVC: BaseViewController = {
-//    let vc = BaseViewController()
-//    return vc
-//  }()
-  
-  
+
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    let navVC = UINavigationController(rootViewController: SpotifyLoginVC())
-    navVC.setNavigationBarHidden(true, animated: false)
+    let navVC = UINavigationController(rootViewController: SignUpViewController())
+    navVC.navigationBar.prefersLargeTitles = true
     window?.rootViewController = navVC
     window?.makeKeyAndVisible()
     

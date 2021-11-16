@@ -7,26 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B522C2AC273D2D310093206A /* WelcomeScreenCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522C2AB273D2D310093206A /* WelcomeScreenCells.swift */; };
+		B51F134427424F3E00F44593 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F134327424F3E00F44593 /* InputCell.swift */; };
+		B51F134A2742523700F44593 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51F13492742523700F44593 /* InputCell.xib */; };
 		B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522C2AE273D3FCE0093206A /* StorageManager.swift */; };
 		B522C2B2273D404E0093206A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522C2B1273D404E0093206A /* String+Extension.swift */; };
 		B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52666F327199FDB00A55A48 /* BaseViewController.swift */; };
+		B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D0E3F27425DF6007DE06F /* ButtonTableViewCell.swift */; };
+		B53D0E4227425DF6007DE06F /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */; };
+		B555AC782744159400365376 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555AC772744159400365376 /* UIViewController+Extension.swift */; };
 		B55AB021273FE32800A792E8 /* SpotifyLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55AB020273FE32800A792E8 /* SpotifyLoginVC.swift */; };
 		B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56FCADE271C61F4002CEA5E /* assets.xcassets */; };
-		B56FCAE1271C641D002CEA5E /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FCAE0271C641D002CEA5E /* DesignableView.swift */; };
-		B585983027390218003EE8E9 /* TitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B585982E27390218003EE8E9 /* TitleCell.xib */; };
-		B58598352739032D003EE8E9 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58598332739032D003EE8E9 /* InputCell.xib */; };
-		B585983F27390429003EE8E9 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B585983D27390429003EE8E9 /* ButtonCell.xib */; };
-		B5859843273904AF003EE8E9 /* MemberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5859841273904AF003EE8E9 /* MemberView.xib */; };
-		B58D6644273E888900123C51 /* ToFix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D6643273E888900123C51 /* ToFix.swift */; };
+		B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AEE6832741106E00361C1C /* Constraints+Extension.swift */; };
 		B5B34933270E207C00E7DE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B34932270E207C00E7DE1C /* AppDelegate.swift */; };
 		B5B34935270E207C00E7DE1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B34934270E207C00E7DE1C /* SceneDelegate.swift */; };
 		B5B3493F270E207F00E7DE1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */; };
 		B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E529C2272468CC0060CEBC /* SignUpViewController.swift */; };
 		B5E529C5272468CC0060CEBC /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5E529C3272468CC0060CEBC /* SignUpViewController.xib */; };
 		B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */; };
-		B5FDF24327119F4100B1AF38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FDF24127119F4100B1AF38 /* LoginViewController.swift */; };
-		B5FDF24427119F4100B1AF38 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5FDF24227119F4100B1AF38 /* LoginViewController.xib */; };
+		B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FDF24127119F4100B1AF38 /* SignInViewController.swift */; };
+		B5FDF24427119F4100B1AF38 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5FDF24227119F4100B1AF38 /* SignInViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,18 +42,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B522C2AB273D2D310093206A /* WelcomeScreenCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeScreenCells.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/WelcomeScreenCells.swift"; sourceTree = "<group>"; };
+		B51F134327424F3E00F44593 /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
+		B51F13492742523700F44593 /* InputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
 		B522C2AE273D3FCE0093206A /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B522C2B1273D404E0093206A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B52666F327199FDB00A55A48 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B53D0E3F27425DF6007DE06F /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		B555AC772744159400365376 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B55AB020273FE32800A792E8 /* SpotifyLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginVC.swift; sourceTree = "<group>"; };
 		B56FCADE271C61F4002CEA5E /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
-		B56FCAE0271C641D002CEA5E /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
-		B585982E27390218003EE8E9 /* TitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
-		B58598332739032D003EE8E9 /* InputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
-		B585983D27390429003EE8E9 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
-		B5859841273904AF003EE8E9 /* MemberView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberView.xib; sourceTree = "<group>"; };
-		B58D6643273E888900123C51 /* ToFix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToFix.swift; sourceTree = "<group>"; };
+		B5AEE6832741106E00361C1C /* Constraints+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraints+Extension.swift"; sourceTree = "<group>"; };
 		B5B3492F270E207C00E7DE1C /* Musical_Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musical_Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B34932270E207C00E7DE1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5B34934270E207C00E7DE1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,8 +61,8 @@
 		B5E529C2272468CC0060CEBC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B5E529C3272468CC0060CEBC /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
-		B5FDF24127119F4100B1AF38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B5FDF24227119F4100B1AF38 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		B5FDF24127119F4100B1AF38 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B5FDF24227119F4100B1AF38 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +76,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B51F134027424E8500F44593 /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B5E529C2272468CC0060CEBC /* SignUpViewController.swift */,
+				B5E529C3272468CC0060CEBC /* SignUpViewController.xib */,
+			);
+			path = SignUpViewController;
+			sourceTree = "<group>";
+		};
+		B51F134827424FC000F44593 /* InputCell */ = {
+			isa = PBXGroup;
+			children = (
+				B51F134327424F3E00F44593 /* InputCell.swift */,
+				B51F13492742523700F44593 /* InputCell.xib */,
+			);
+			path = InputCell;
+			sourceTree = "<group>";
+		};
 		B522C2AD273D3FB10093206A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +107,8 @@
 			children = (
 				B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */,
 				B522C2B1273D404E0093206A /* String+Extension.swift */,
+				B5AEE6832741106E00361C1C /* Constraints+Extension.swift */,
+				B555AC772744159400365376 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -98,10 +116,10 @@
 		B5322A502726910100EF5841 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B53D0E3D2742550C007DE06F /* BaseViewController */,
 				B55AB01F273FE2D100A792E8 /* LoginSpotify */,
-				B52666F327199FDB00A55A48 /* BaseViewController.swift */,
-				B55AB01E273FE2A500A792E8 /* LoginViewController */,
-				B5E529C2272468CC0060CEBC /* SignUpViewController.swift */,
+				B55AB01E273FE2A500A792E8 /* SignInViewController */,
+				B51F134027424E8500F44593 /* SignUpViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,21 +137,36 @@
 		B5322A522726912C00EF5841 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B585983127390287003EE8E9 /* Cells */,
-				B5E529C3272468CC0060CEBC /* SignUpViewController.xib */,
+				B585983127390287003EE8E9 /* LoginViewCells */,
 				B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */,
-				B56FCAE0271C641D002CEA5E /* DesignableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B55AB01E273FE2A500A792E8 /* LoginViewController */ = {
+		B53D0E3D2742550C007DE06F /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B5FDF24227119F4100B1AF38 /* LoginViewController.xib */,
-				B5FDF24127119F4100B1AF38 /* LoginViewController.swift */,
+				B52666F327199FDB00A55A48 /* BaseViewController.swift */,
 			);
-			path = LoginViewController;
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		B53D0E3E27425D8D007DE06F /* Button Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B53D0E3F27425DF6007DE06F /* ButtonTableViewCell.swift */,
+				B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */,
+			);
+			path = "Button Cell";
+			sourceTree = "<group>";
+		};
+		B55AB01E273FE2A500A792E8 /* SignInViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B5FDF24227119F4100B1AF38 /* SignInViewController.xib */,
+				B5FDF24127119F4100B1AF38 /* SignInViewController.swift */,
+			);
+			path = SignInViewController;
 			sourceTree = "<group>";
 		};
 		B55AB01F273FE2D100A792E8 /* LoginSpotify */ = {
@@ -144,16 +177,13 @@
 			path = LoginSpotify;
 			sourceTree = "<group>";
 		};
-		B585983127390287003EE8E9 /* Cells */ = {
+		B585983127390287003EE8E9 /* LoginViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				B522C2AB273D2D310093206A /* WelcomeScreenCells.swift */,
-				B585982E27390218003EE8E9 /* TitleCell.xib */,
-				B58598332739032D003EE8E9 /* InputCell.xib */,
-				B585983D27390429003EE8E9 /* ButtonCell.xib */,
-				B5859841273904AF003EE8E9 /* MemberView.xib */,
+				B53D0E3E27425D8D007DE06F /* Button Cell */,
+				B51F134827424FC000F44593 /* InputCell */,
 			);
-			path = Cells;
+			path = LoginViewCells;
 			sourceTree = "<group>";
 		};
 		B5B34926270E207B00E7DE1C = {
@@ -181,7 +211,6 @@
 				B5322A522726912C00EF5841 /* Views */,
 				B5322A502726910100EF5841 /* Controllers */,
 				B5B34940270E207F00E7DE1C /* Info.plist */,
-				B58D6643273E888900123C51 /* ToFix.swift */,
 			);
 			path = Musical_Player;
 			sourceTree = "<group>";
@@ -245,14 +274,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5859843273904AF003EE8E9 /* MemberView.xib in Resources */,
-				B585983027390218003EE8E9 /* TitleCell.xib in Resources */,
-				B5FDF24427119F4100B1AF38 /* LoginViewController.xib in Resources */,
+				B5FDF24427119F4100B1AF38 /* SignInViewController.xib in Resources */,
 				B5B3493F270E207F00E7DE1C /* LaunchScreen.storyboard in Resources */,
+				B53D0E4227425DF6007DE06F /* ButtonTableViewCell.xib in Resources */,
 				B5E529C5272468CC0060CEBC /* SignUpViewController.xib in Resources */,
-				B58598352739032D003EE8E9 /* InputCell.xib in Resources */,
 				B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */,
-				B585983F27390429003EE8E9 /* ButtonCell.xib in Resources */,
+				B51F134A2742523700F44593 /* InputCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,15 +290,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B522C2AC273D2D310093206A /* WelcomeScreenCells.swift in Sources */,
 				B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */,
 				B5B34933270E207C00E7DE1C /* AppDelegate.swift in Sources */,
+				B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */,
 				B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */,
+				B555AC782744159400365376 /* UIViewController+Extension.swift in Sources */,
 				B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */,
-				B5FDF24327119F4100B1AF38 /* LoginViewController.swift in Sources */,
-				B58D6644273E888900123C51 /* ToFix.swift in Sources */,
+				B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */,
 				B55AB021273FE32800A792E8 /* SpotifyLoginVC.swift in Sources */,
-				B56FCAE1271C641D002CEA5E /* DesignableView.swift in Sources */,
+				B51F134427424F3E00F44593 /* InputCell.swift in Sources */,
+				B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */,
 				B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */,
 				B522C2B2273D404E0093206A /* String+Extension.swift in Sources */,
 				B5B34935270E207C00E7DE1C /* SceneDelegate.swift in Sources */,

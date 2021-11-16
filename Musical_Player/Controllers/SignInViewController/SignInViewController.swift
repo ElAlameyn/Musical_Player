@@ -8,37 +8,38 @@
 import UIKit
 
 
-class LoginViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SignInViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-  private let cells: [Cell] = [.title, .emailInput, .passwordInput, .button]
+  private let cells: [Cell] = [.emailInput, .passwordInput, .submitButton]
 
   enum Cell {
-    case title, emailInput, passwordInput, button
+    case emailInput, passwordInput, submitButton
   }
   
   @IBOutlet var tableView: UITableView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    title = "Sign In"
 
-    tableView.registerNib(cellClass: TitleCell.self, bundle: .main)
     tableView.registerNib(cellClass: InputCell.self, bundle: .main)
-    tableView.registerNib(cellClass: ButtonCell.self, bundle: .main)
+    tableView.registerNib(cellClass: ButtonTableViewCell.self, bundle: .main)
 
     tableView.delegate = self
     tableView.dataSource = self
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
+    
+    tableView.setHeaderView(with: "music.note", imagePointSize: 60, headerFrameHeight: 80)
+    
+    addMemberView(memberLabelText: "New member?", buttonTitle: "Sign Up").addTarget(self, action: #selector(didPushToSignUpTapped), for: .touchUpInside)
+    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    getCell(tableView, at: indexPath)
+  }
+  
+  func getCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
     switch cells[indexPath.row] {
-    case .title:
-      let cell: TitleCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      return cell
     case .emailInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
       cell.configPlaceHolder(with: "Email")
@@ -47,9 +48,9 @@ class LoginViewController: UIViewController, UITableViewDataSource, UITableViewD
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
       cell.configPlaceHolder(with: "Password")
       return cell
-    case .button:
-      let cell: ButtonCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
+    case .submitButton:
+      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.config()
       return cell
     }
   }
@@ -58,13 +59,19 @@ class LoginViewController: UIViewController, UITableViewDataSource, UITableViewD
     cells.count
   }
   
+  @IBAction func didPushToSignUpTapped(_ sender: UIButton) {
+
+    
+    let signUpViewController = SignUpViewController()
+    navigationController?.popViewController(animated: true)
+  }
 
   @objc func continueButtonTapped(_ sender: Any) {
     guard
       let email = (tableView.cellForRow(at: IndexPath(row: 1, section: 0))
-                   as? InputCell)?.getValue(),
+                   as? InputCell)?.inputTextField.text,
       let password = (tableView.cellForRow(at: IndexPath(row: 2, section: 0))
-                      as? InputCell)?.getValue()
+                      as? InputCell)?.inputTextField.text
     else { return }
     
 
@@ -81,12 +88,6 @@ class LoginViewController: UIViewController, UITableViewDataSource, UITableViewD
 
 
 
-//  @IBAction func signButtonTapped(_ sender: UIButton) {
-////    passwordTextField.text = ""
-////    emailTextField.text = ""
-//
-//    let vc = SignUpViewController()
-//    navigationController?.pushViewController(vc, animated: true)
-//  }
+
 
 

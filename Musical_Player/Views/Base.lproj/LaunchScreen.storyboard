@@ -17,10 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="start_img" translatesAutoresizingMaskIntoConstraints="NO" id="voA-XZ-knf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COFEE PLAYER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikq-D6-Tku">
                                 <rect key="frame" x="71.5" y="359.5" width="211.5" height="37"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
@@ -33,14 +29,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8ff-dG-YxY">
+                                <rect key="frame" x="142.5" y="286" width="129" height="125"/>
+                                <color key="tintColor" systemColor="systemTealColor"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="110"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Musical Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="477-WG-35E">
+                                <rect key="frame" x="111" y="429.5" width="192" height="37"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihl-2Y-njW">
+                                <rect key="frame" x="129" y="474.5" width="156" height="23"/>
+                                <string key="text">Use with pleasure!
+</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ldl-5s-lyH" firstAttribute="trailing" secondItem="Ikq-D6-Tku" secondAttribute="trailing" id="3Yw-o1-S4e"/>
+                            <constraint firstItem="ihl-2Y-njW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Avw-Va-Six"/>
+                            <constraint firstItem="ihl-2Y-njW" firstAttribute="top" secondItem="477-WG-35E" secondAttribute="bottom" constant="8" symbolic="YES" id="JvW-RQ-o70"/>
+                            <constraint firstItem="8ff-dG-YxY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="P6k-Ag-7go"/>
                             <constraint firstItem="Ikq-D6-Tku" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-70" id="S35-Od-j0D"/>
                             <constraint firstItem="Ikq-D6-Tku" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-30" id="Xmn-OI-jN2"/>
+                            <constraint firstItem="477-WG-35E" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bh1-3f-mYg"/>
                             <constraint firstItem="Ldl-5s-lyH" firstAttribute="top" secondItem="Ikq-D6-Tku" secondAttribute="bottom" constant="8" symbolic="YES" id="d6C-tf-KZR"/>
+                            <constraint firstItem="8ff-dG-YxY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="rZp-lk-Jh0"/>
+                            <constraint firstItem="477-WG-35E" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xtB-1K-DOB"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -50,9 +71,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="start_img" width="1080" height="1920"/>
+        <image name="play.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

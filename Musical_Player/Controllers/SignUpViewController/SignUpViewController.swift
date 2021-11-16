@@ -11,41 +11,42 @@ import UIKit
 class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   enum Cell {
-    case title, userNameInput, emailInput, passwordInput, confirmPasswordInput,button
+    case userNameInput, emailInput, passwordInput, confirmPasswordInput, submitButton
   }
   
   @IBOutlet var tableView: UITableView!
   
-  private let cells: [Cell] = [.title, .userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .button]
+  private let cells: [Cell] = [.userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .submitButton]
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    let memberView = UIView()
-    memberView.backgroundColor = .red
     
-    view.addSubview(memberView)
-    
-    memberView.translatesAutoresizingMaskIntoConstraints = false
-    memberView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-    memberView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
-    memberView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-    memberView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    title = "Sign Up"
 
-    tableView.registerNib(cellClass: TitleCell.self, bundle: .main)
+
     tableView.registerNib(cellClass: InputCell.self, bundle: .main)
-    tableView.registerNib(cellClass: ButtonCell.self, bundle: .main)
+    tableView.registerNib(cellClass: ButtonTableViewCell.self, bundle: .main)
 
     tableView.delegate = self
     tableView.dataSource = self
-    // Do any additional setup after loading the view.
+    
+    tableView.setHeaderView(with: "music.note", imagePointSize: 60, headerFrameHeight: 100)
+    
+    addMemberView(memberLabelText: "Already have an account?", buttonTitle: "Sign In").addTarget(self, action: #selector(didPushToSignInTapped), for: .touchUpInside)
+
+  }
+  
+
+  @objc func didPushToSignInTapped() {
+    let signInViewController = SignInViewController()
+    navigationController?.pushViewController(signInViewController, animated: true)
   }
   
   @objc func signButtonTapped(_ sender: Any) {
     guard
-      let userName = (tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? InputCell)?.getValue(),
-      let email = (tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? InputCell)?.getValue(),
-      let password = (tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? InputCell)?.getValue()
+      let userName = (tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? InputCell)?.inputTextField.text,
+      let email = (tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? InputCell)?.inputTextField.text,
+      let password = (tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? InputCell)?.inputTextField.text
     else { return }
 
     if email.isValidEmail() && password.isValidPassword() && userName.isValidUserName() {
@@ -72,10 +73,11 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    getCell(tableView, cellForRowAt: indexPath)
+  }
+  
+  private func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     switch cells[indexPath.row] {
-    case .title:
-      let cell: TitleCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      return cell
     case .userNameInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
       cell.configPlaceHolder(with: "User Name")
@@ -92,13 +94,15 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
       cell.configPlaceHolder(with: "Confirm Password")
       return cell
-    case .button:
-      let cell: ButtonCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.button.addTarget(self, action: #selector(signButtonTapped), for: .touchUpInside)
+    case .submitButton:
+      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.config()
+      cell.button.addTarget(self, action: #selector(signButtonTapped(_:)), for: .touchUpInside)
       return cell
     }
   }
   
+
 }
 
 

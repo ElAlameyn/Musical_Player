@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Musical_Player" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="Musical_Player" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="c3u-sO-EbV" id="Hzf-cb-bnw"/>
                 <outlet property="view" destination="qlY-br-6Gi" id="MQI-Fy-fEV"/>
