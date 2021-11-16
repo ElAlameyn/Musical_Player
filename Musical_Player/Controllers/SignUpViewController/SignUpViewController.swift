@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   @IBOutlet var tableView: UITableView!
   
-  private let cells: [Cell] = [.userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .submitButton]
+  private let cells: [UITableView.Cell] = [.userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .submitButton]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,6 +41,7 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let signInViewController = SignInViewController()
     navigationController?.pushViewController(signInViewController, animated: true)
   }
+  
   
   @objc func signButtonTapped(_ sender: Any) {
     guard
@@ -73,37 +74,15 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    getCell(tableView, cellForRowAt: indexPath)
-  }
-  
-  private func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-    switch cells[indexPath.row] {
-    case .userNameInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "User Name")
-      return cell
-    case .emailInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Email")
-      return cell
-    case .passwordInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Password")
-      return cell
-    case .confirmPasswordInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Confirm Password")
-      return cell
-    case .submitButton:
-      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.config()
-      cell.button.addTarget(self, action: #selector(signButtonTapped(_:)), for: .touchUpInside)
-      return cell
+    let cell = tableView.getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
+    if let buttonCell = cell as? ButtonTableViewCell {
+      buttonCell.button.addTarget(self, action: #selector(signButtonTapped(_:)), for: .touchUpInside)
+      return buttonCell
     }
+    return cell
   }
-  
-
 }
+
 
 
 

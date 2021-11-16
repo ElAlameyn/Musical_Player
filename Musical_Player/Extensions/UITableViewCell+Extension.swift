@@ -8,6 +8,11 @@
 import UIKit
 
 extension UITableView {
+  
+  enum Cell {
+    case userNameInput, emailInput, passwordInput, confirmPasswordInput, submitButton
+  }
+  
   func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath) -> T {
     guard let cell = dequeueReusableCell(withIdentifier: "\(T.self)", for: indexPath) as? T else {
       fatalError("Wrong identifier")
@@ -43,7 +48,31 @@ extension UITableView {
 
     self.addEdgeConstraints()
   }
-  
+
+  func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, of type: UITableView.Cell) -> UITableViewCell {
+    switch type {
+    case .userNameInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "User Name")
+      return cell
+    case .emailInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Email")
+      return cell
+    case .passwordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Password")
+      return cell
+    case .confirmPasswordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Confirm Password")
+      return cell
+    case .submitButton:
+      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.config()
+      return cell
+    }
+  }
 
   
 }

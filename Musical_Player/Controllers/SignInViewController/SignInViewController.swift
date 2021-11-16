@@ -10,7 +10,7 @@ import UIKit
 
 class SignInViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-  private let cells: [Cell] = [.emailInput, .passwordInput, .submitButton]
+  private let cells: [UITableView.Cell] = [.emailInput, .passwordInput, .submitButton]
 
   enum Cell {
     case emailInput, passwordInput, submitButton
@@ -31,38 +31,24 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
     tableView.setHeaderView(with: "music.note", imagePointSize: 60, headerFrameHeight: 80)
     
     addMemberView(memberLabelText: "New member?", buttonTitle: "Sign Up").addTarget(self, action: #selector(didPushToSignUpTapped), for: .touchUpInside)
-    
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    getCell(tableView, at: indexPath)
-  }
-  
-  func getCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-    switch cells[indexPath.row] {
-    case .emailInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Email")
-      return cell
-    case .passwordInput:
-      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Password")
-      return cell
-    case .submitButton:
-      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.config()
-      return cell
+    let cell = tableView.getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
+    if let buttonCell = cell as? ButtonTableViewCell {
+      buttonCell.button.addTarget(self, action: #selector(continueButtonTapped(_:)), for: .touchUpInside)
+      return buttonCell
     }
+    return cell
+    
   }
   
+
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     cells.count
   }
   
   @IBAction func didPushToSignUpTapped(_ sender: UIButton) {
-
-    
-    let signUpViewController = SignUpViewController()
     navigationController?.popViewController(animated: true)
   }
 
