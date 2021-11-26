@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import KeychainSwift
 
 class StorageManager {
+  let keychain = KeychainSwift()
   
   enum Const {
     static let userName = "userName"
     static let email = "userEmail"
     static let password = "userPassword"
+    static let token = "token"
   }
   
   static let shared = StorageManager()
@@ -20,16 +23,23 @@ class StorageManager {
   private init() {}
   
   func saveUserInfo(userName: String, email: String, password: String) {
-    UserDefaults.standard.set(userName, forKey: Const.userName)
-    UserDefaults.standard.set(email, forKey: Const.email)
-    UserDefaults.standard.set(password, forKey: Const.password)
+    keychain.set(userName, forKey: Const.userName, withAccess: .accessibleWhenUnlocked)
+    keychain.set(email, forKey: Const.email, withAccess: .accessibleWhenUnlocked)
+    keychain.set(password, forKey: Const.password, withAccess: .accessibleWhenUnlocked)
+    
+    print("USER NAME: \(String(describing: keychain.get(Const.userName)))")
   }
   
   func checkUserInfo(email: String, password: String) -> Bool {
-    guard let savedEmail = UserDefaults.standard.string(forKey: Const.email),
-          let savedPassword = UserDefaults.standard.string(forKey: Const.password)
+    guard let savedEmail = keychain.get(Const.email),
+          let savedPassword = keychain.get(Const.password)
     else { return false }
     
     return email == savedEmail && password == savedPassword ? true : false
   }
+  
+  func saveToken(token: String) {
+    keychain.set(token, forKey: Const.token, withAccess: .accessibleWhenUnlocked)
+  }
+  
 }

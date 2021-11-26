@@ -10,19 +10,38 @@ import UIKit
 
 class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  enum Cell {
+  enum SignUpCells {
     case userNameInput, emailInput, passwordInput, confirmPasswordInput, submitButton
   }
   
+  let validator = Validator()
+  
   @IBOutlet var tableView: UITableView!
   
-  private let cells: [UITableView.Cell] = [.userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .submitButton]
+  private let cells: [SignUpCells] = [.userNameInput, .emailInput, .passwordInput, .confirmPasswordInput, .submitButton]
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     title = "Sign Up"
+    
+    addMemberView()
+    addTableView()
 
+  }
+
+  func addMemberView() {
+    let memberView = MemberView(frame: CGRect(), memberText: "Already have an account?", buttonTitle: "Sign In")
+    
+    memberView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 10, bottom: -10, right: -10))
+    
+    memberView.addButtonTarget(self, action: #selector(didPushToSignInTapped))
+
+    view.addSubview(memberView)
+  }
+  
+  func addTableView() {
+    tableView.tableHeaderView = HeaderView()
 
     tableView.registerNib(cellClass: InputCell.self, bundle: .main)
     tableView.registerNib(cellClass: ButtonTableViewCell.self, bundle: .main)
@@ -30,12 +49,8 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     tableView.delegate = self
     tableView.dataSource = self
     
-    tableView.setHeaderView(with: "music.note", imagePointSize: 60, headerFrameHeight: 100)
-    
-    addMemberView(memberLabelText: "Already have an account?", buttonTitle: "Sign In").addTarget(self, action: #selector(didPushToSignInTapped), for: .touchUpInside)
-
+    view.addSubview(tableView)
   }
-  
 
   @objc func didPushToSignInTapped() {
     let signInViewController = SignInViewController()
@@ -43,29 +58,39 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   
-  @objc func signButtonTapped(_ sender: Any) {
+  @objc func signButtonTapped() {
     guard
-      let userName = (tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? InputCell)?.inputTextField.text,
-      let email = (tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? InputCell)?.inputTextField.text,
-      let password = (tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? InputCell)?.inputTextField.text
+      let userName = (tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? InputCell)?.inputTextField.text,
+      let email = (tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? InputCell)?.inputTextField.text,
+      let password = (tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? InputCell)?.inputTextField.text
     else { return }
-
-    if email.isValidEmail() && password.isValidPassword() && userName.isValidUserName() {
-      StorageManager.shared.saveUserInfo(userName: userName, email: email, password: password)
-      print("Registration succeeded")
-      
-      let baseViewController = BaseViewController()
-      navigationController?.pushViewController(baseViewController, animated: true)
-    } else {
-      print("registration failed")
+    
+    let passwordValid = validator.isValid(password: password)
+    let emailValid = validator.isValid(email: email)
+    let userNameValid = validator.isValid(userName: userName)
+    
+    guard passwordValid.isValid else {
+      // error
+      return
     }
+    
+    guard emailValid.isValid else {
+      // error
+      return
+    }
+    
+    guard userNameValid.isValid else {
+      // error
+      return
+    }
+    
+    StorageManager.shared.saveUserInfo(userName: userName, email: email, password: password)
+
+    let baseViewController = BaseViewController()
+    navigationController?.pushViewController(baseViewController, animated: true)
   }
   
-  @IBAction func loginButtonTapped(_ sender: Any) {
-    //    userNameTextField.text = ""
-    //    emailTextField.text = ""
-    //    confirmPasswordField.text = ""
-    
+  func loginButtonTapped() {
     navigationController?.popViewController(animated: true)
   }
   
@@ -74,12 +99,39 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
+    let cell = getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
     if let buttonCell = cell as? ButtonTableViewCell {
-      buttonCell.button.addTarget(self, action: #selector(signButtonTapped(_:)), for: .touchUpInside)
+      buttonCell.button.addTarget(self, action: #selector(signButtonTapped), for: .touchUpInside)
       return buttonCell
     }
     return cell
+  }
+  
+  func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, of type: SignUpCells) -> UITableViewCell {
+    switch type {
+    case .userNameInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "User Name")
+      return cell
+    case .emailInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Email")
+      return cell
+    case .passwordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Password")
+      return cell
+    case .confirmPasswordInput:
+      let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.configPlaceHolder(with: "Confirm Password")
+      return cell
+    case .submitButton:
+      let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+      cell.buttonTapped = { [weak self] in
+        self?.loginButtonTapped()
+      }
+      return cell
+    }
   }
 }
 
