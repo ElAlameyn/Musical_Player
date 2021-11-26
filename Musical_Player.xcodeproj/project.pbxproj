@@ -35,6 +35,7 @@
 		B5CD57512750DA4700B9FB61 /* RecommendedGenresResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD57502750DA4700B9FB61 /* RecommendedGenresResponse.swift */; };
 		B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E529C2272468CC0060CEBC /* SignUpViewController.swift */; };
 		B5E529C5272468CC0060CEBC /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5E529C3272468CC0060CEBC /* SignUpViewController.xib */; };
+		B5F04D132751628D00850A2D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F04D122751628D00850A2D /* SignInViewModel.swift */; };
 		B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */; };
 		B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FDF24127119F4100B1AF38 /* SignInViewController.swift */; };
 		B5FDF24427119F4100B1AF38 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5FDF24227119F4100B1AF38 /* SignInViewController.xib */; };
@@ -83,6 +84,7 @@
 		B5CD57502750DA4700B9FB61 /* RecommendedGenresResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedGenresResponse.swift; sourceTree = "<group>"; };
 		B5E529C2272468CC0060CEBC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B5E529C3272468CC0060CEBC /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		B5F04D122751628D00850A2D /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		B5FDF24127119F4100B1AF38 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B5FDF24227119F4100B1AF38 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		B55AB01E273FE2A500A792E8 /* SignInViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B5F04D112751627B00850A2D /* VIewModel */,
 				B5FDF24227119F4100B1AF38 /* SignInViewController.xib */,
 				B5FDF24127119F4100B1AF38 /* SignInViewController.swift */,
 			);
@@ -256,6 +259,14 @@
 				B5B34940270E207F00E7DE1C /* Info.plist */,
 			);
 			path = Musical_Player;
+			sourceTree = "<group>";
+		};
+		B5F04D112751627B00850A2D /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5F04D122751628D00850A2D /* SignInViewModel.swift */,
+			);
+			path = VIewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +364,7 @@
 				B5CD57512750DA4700B9FB61 /* RecommendedGenresResponse.swift in Sources */,
 				B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */,
 				B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */,
+				B5F04D132751628D00850A2D /* SignInViewModel.swift in Sources */,
 				B51F134427424F3E00F44593 /* InputCell.swift in Sources */,
 				B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */,
 				B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */,

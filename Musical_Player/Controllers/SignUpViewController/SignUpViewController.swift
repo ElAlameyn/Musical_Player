@@ -111,19 +111,19 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     switch type {
     case .userNameInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "User Name")
+//      cell.configPlaceHolder(with: "User Name")
       return cell
     case .emailInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Email")
+//      cell.configPlaceHolder(with: "Email")
       return cell
     case .passwordInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Password")
+//      cell.configPlaceHolder(with: "Password")
       return cell
     case .confirmPasswordInput:
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-      cell.configPlaceHolder(with: "Confirm Password")
+//      cell.configPlaceHolder(with: "Confirm Password")
       return cell
     case .submitButton:
       let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)

@@ -11,14 +11,9 @@ class InputCell: UITableViewCell {
   
   @IBOutlet var inputTextField: UITextField!
   
-  var textChanged: ((String) -> Void)?
-
-  func configPlaceHolder(with name: String) {
-    if name == "Password" || name == "Confirm Password" {
-      inputTextField.isSecureTextEntry = true
-    }
+  override func awakeFromNib() {
+    super.awakeFromNib()
     
-    inputTextField.placeholder = name
     inputTextField.layer.shadowColor = UIColor.black.cgColor
     inputTextField.layer.shadowRadius = 8
     inputTextField.layer.shadowOpacity = Float(0.05)
@@ -27,6 +22,14 @@ class InputCell: UITableViewCell {
     inputTextField.addTarget(self, action: #selector(textFieldValueChanged(sender:)), for: .editingChanged)
   }
   
+  var textChanged: ((String) -> Void)?
+  
+  func fill(placeholder: String, value: String, isSecure: Bool) {
+    inputTextField.placeholder = placeholder
+    inputTextField.text = value
+    inputTextField.isSecureTextEntry = isSecure
+  }
+
   @objc func textFieldValueChanged(sender: UITextField) {
     textChanged?(sender.text ?? "")
   }
