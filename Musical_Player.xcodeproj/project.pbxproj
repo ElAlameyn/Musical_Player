@@ -10,6 +10,7 @@
 		B507D62D2745055E009F2966 /* SpoifyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507D62C2745055E009F2966 /* SpoifyAPI.swift */; };
 		B51F134427424F3E00F44593 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F134327424F3E00F44593 /* InputCell.swift */; };
 		B51F134A2742523700F44593 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51F13492742523700F44593 /* InputCell.xib */; };
+		B51FA3792752142D00089509 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51FA3782752142D00089509 /* SignUpViewModel.swift */; };
 		B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522C2AE273D3FCE0093206A /* StorageManager.swift */; };
 		B522C2B2273D404E0093206A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B522C2B1273D404E0093206A /* String+Extension.swift */; };
 		B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52666F327199FDB00A55A48 /* BaseViewController.swift */; };
@@ -58,6 +59,7 @@
 		B507D62C2745055E009F2966 /* SpoifyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoifyAPI.swift; sourceTree = "<group>"; };
 		B51F134327424F3E00F44593 /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
 		B51F13492742523700F44593 /* InputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
+		B51FA3782752142D00089509 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B522C2AE273D3FCE0093206A /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B522C2B1273D404E0093206A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B52666F327199FDB00A55A48 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		B51F134027424E8500F44593 /* SignUpViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B51FA3772752141A00089509 /* ViewModel */,
 				B5E529C2272468CC0060CEBC /* SignUpViewController.swift */,
 				B5E529C3272468CC0060CEBC /* SignUpViewController.xib */,
 			);
@@ -118,6 +121,14 @@
 				B51F13492742523700F44593 /* InputCell.xib */,
 			);
 			path = InputCell;
+			sourceTree = "<group>";
+		};
+		B51FA3772752141A00089509 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B51FA3782752142D00089509 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B522C2AD273D3FB10093206A /* Managers */ = {
@@ -200,7 +211,7 @@
 		B55AB01E273FE2A500A792E8 /* SignInViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B5F04D112751627B00850A2D /* VIewModel */,
+				B5F04D112751627B00850A2D /* ViewModel */,
 				B5FDF24227119F4100B1AF38 /* SignInViewController.xib */,
 				B5FDF24127119F4100B1AF38 /* SignInViewController.swift */,
 			);
@@ -261,12 +272,12 @@
 			path = Musical_Player;
 			sourceTree = "<group>";
 		};
-		B5F04D112751627B00850A2D /* VIewModel */ = {
+		B5F04D112751627B00850A2D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				B5F04D122751628D00850A2D /* SignInViewModel.swift */,
 			);
-			path = VIewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 				B5CD57512750DA4700B9FB61 /* RecommendedGenresResponse.swift in Sources */,
 				B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */,
 				B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */,
+				B51FA3792752142D00089509 /* SignUpViewModel.swift in Sources */,
 				B5F04D132751628D00850A2D /* SignInViewModel.swift in Sources */,
 				B51F134427424F3E00F44593 /* InputCell.swift in Sources */,
 				B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */,

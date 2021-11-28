@@ -20,8 +20,8 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
     configTableView()
     addMemberView()
 
-    viewModel.continueButtonTapped = { [weak self] in
-      self?.continueButtonTapped()
+    viewModel.continueButtonTapped = { [weak self] info in
+      self?.continueButtonTapped(info: info)
     }
   }
   
@@ -51,9 +51,9 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
     navigationController?.popViewController(animated: true)
   }
 
-  func continueButtonTapped() {
+  func continueButtonTapped(info: ViewModel.Info) {
 
-    if StorageManager.shared.checkUserInfo(email: viewModel.info.email, password: viewModel.info.password) {
+    if StorageManager.shared.checkUserInfo(email: info.email, password: info.password) {
       let baseViewController = BaseViewController()
       navigationController?.pushViewController(baseViewController, animated: true)
     } else {
@@ -62,6 +62,7 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
   }
   
 }
+
 
 
 

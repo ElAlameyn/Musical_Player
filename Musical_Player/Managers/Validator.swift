@@ -18,11 +18,11 @@ class Validator {
     } else {
       return ValidatorError(isValid: false, errorInfo: "Email is not valid")
     }
-    
   }
   
   // Minimum 8 characters at least 1 Alphabet and 1 Number
   func isValid(password: String) -> ValidatorError {
+    
     let regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
     
     if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: password) {
@@ -33,6 +33,7 @@ class Validator {
   }
   
   func isValid(userName: String) -> ValidatorError {
+    
     let regex = "^\\w{7,18}$"
     
     if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: userName) {
@@ -41,5 +42,4 @@ class Validator {
       return ValidatorError(isValid: false, errorInfo: "Email is not valid")
     }
   }
-  
 }

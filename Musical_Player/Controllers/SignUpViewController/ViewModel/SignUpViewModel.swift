@@ -1,27 +1,27 @@
 //
-//  SignInViewModel.swift
+//  SignUpViewModel.swift
 //  Musical_Player
 //
-//  Created by Артем Калинкин on 26.11.2021.
+//  Created by Артем Калинкин on 27.11.2021.
 //
 
-import Foundation
 import UIKit
 
-extension SignInViewController {
+extension SignUpViewController {
   class ViewModel {
     
     var continueButtonTapped: ((Info) -> Void)?
     
     struct Info {
+      var userName: String
       var email: String
       var password: String
+      var confirmPassword: String
     }
     
-    private let cells: [Cells] = [.input(.email), .input(.password), .submitButton]
+    private let cells: [Cells] = [.input(.userName), .input(.email), .input(.password), .input(.confirmPassword), .submitButton]
     
-    private(set) var info = Info(email: "", password: "")
-    
+    private(set) var info = Info(userName: "", email: "", password: "", confirmPassword: "")
     
     enum Cells {
       case input(InputCellInfo)
@@ -33,7 +33,15 @@ extension SignInViewController {
         let key: Key
         
         enum Key {
-          case email, password
+          case email, password, userName, confirmPassword
+        }
+        
+        static var confirmPassword: InputCellInfo {
+          InputCellInfo(placeholder: "ConfirmPassword", isSecure: true, key: .confirmPassword)
+        }
+        
+        static var userName: InputCellInfo {
+          InputCellInfo(placeholder: "UserName", isSecure: false, key: .userName)
         }
         
         static var email: InputCellInfo {
@@ -46,26 +54,23 @@ extension SignInViewController {
       }
     }
     
-    func numberOfRowsInSection(section: Int) -> Int {
-      cells.count
-    }
     
-    func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-      let cell = getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
-      return cell
-    }
-    
-    private func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, of type: Cells) -> UITableViewCell {
+    func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, of type: Cells) -> UITableViewCell {
       switch type {
       case .input(let cellInfo):
         let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
         
         let value: String
+        
         switch cellInfo.key {
         case .email:
           value = info.email
         case .password:
           value = info.password
+        case .userName:
+          value = info.userName
+        case .confirmPassword:
+          value = info.confirmPassword
         }
         
         cell.fill(placeholder: cellInfo.placeholder, value: value, isSecure: cellInfo.isSecure)
@@ -76,8 +81,13 @@ extension SignInViewController {
             self?.info.email = text
           case .password:
             self?.info.password = text
+          case .userName:
+            self?.info.userName = text
+          case .confirmPassword:
+            self?.info.confirmPassword = text
           }
         }
+        
         return cell
         
       case .submitButton:
@@ -89,6 +99,14 @@ extension SignInViewController {
       }
     }
     
+    func numberOfRowsInSection(section: Int) -> Int {
+      cells.count
+    }
+    
+    func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+      let cell = getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
+      return cell
+    }
+
   }
 }
-
