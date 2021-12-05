@@ -73,7 +73,7 @@ extension SignUpViewController {
           value = info.confirmPassword
         }
         
-        cell.fill(placeholder: cellInfo.placeholder, value: value, isSecure: cellInfo.isSecure)
+//        cell.fill(info: InputCell.Info(placeholder: , value: <#T##String#>, isSecure: <#T##Bool#>))
         
         cell.textChanged = { [weak self] text in
           switch cellInfo.key {

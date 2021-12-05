@@ -11,6 +11,50 @@ class InputCell: UITableViewCell {
   
   @IBOutlet var inputTextField: UITextField!
   
+  enum CellInfo {
+  case email, password, confirmPassword, userName
+    
+    var key: String {
+      switch self {
+      case .email:
+        return "email"
+      case .password:
+        return "password"
+      case .confirmPassword:
+        return "confirmPassword"
+      case .userName:
+        return "userName"
+      }
+    }
+    
+    var placeholder: String {
+      switch self {
+      case .email:
+        return "Email"
+      case .password:
+        return "Password"
+      case .confirmPassword:
+        return "Confirm password"
+      case .userName:
+        return "User Name"
+      }
+    }
+    
+    var isSecure: Bool {
+      switch self {
+      case .email:
+        return false
+      case .password:
+        return true
+      case .confirmPassword:
+        return true
+      case .userName:
+        return false
+      }
+    }
+
+  }
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     
@@ -24,10 +68,10 @@ class InputCell: UITableViewCell {
   
   var textChanged: ((String) -> Void)?
   
-  func fill(placeholder: String, value: String, isSecure: Bool) {
-    inputTextField.placeholder = placeholder
+  func fill(info: CellInfo, value: String) {
+    inputTextField.placeholder = info.placeholder
     inputTextField.text = value
-    inputTextField.isSecureTextEntry = isSecure
+    inputTextField.isSecureTextEntry = info.isSecure
   }
 
   @objc func textFieldValueChanged(sender: UITextField) {

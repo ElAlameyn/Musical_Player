@@ -12,7 +12,7 @@ class HeaderView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    let image = UIImage(systemName: "music.note", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(60)))?
+    let image = UIImage(systemName: Constants.headerImageName, withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(60)))?
       .withTintColor(.systemTeal, renderingMode: .alwaysOriginal)
     let headerImageView = UIImageView(image: image)
 

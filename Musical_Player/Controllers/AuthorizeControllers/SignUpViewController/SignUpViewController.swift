@@ -95,7 +95,6 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     viewModel.cellForRowAt(tableView: tableView, indexPath: indexPath)
   }
-  
 }
 
 

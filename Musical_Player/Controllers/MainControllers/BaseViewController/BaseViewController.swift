@@ -12,10 +12,6 @@ class BaseViewController: UIViewController {
   
 
   override func viewDidLoad() {
-    view.backgroundColor = .white
-    
-    title = "COFEE PLAYER"
-
-
+    view.backgroundColor = .systemBackground
   }
 }

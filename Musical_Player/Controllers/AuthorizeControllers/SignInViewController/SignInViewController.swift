@@ -15,7 +15,7 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Sign In"
+    title = Localizable.singInTitle
     
     configTableView()
     addMemberView()
@@ -26,7 +26,9 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
   }
   
   func addMemberView() {
-    let memberView = MemberView(frame: CGRect(), memberText: "New member?", buttonTitle: "Sign Up")
+    let memberView = MemberView(frame: CGRect(),
+                                memberText: Localizable.memberViewText,
+                                buttonTitle: Localizable.singUpTitle)
     view.addSubview(memberView)
     memberView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 10, bottom: -10, right: -10))
     memberView.addButtonTarget(self, action: #selector(didPushToSignUpTapped(_:)))

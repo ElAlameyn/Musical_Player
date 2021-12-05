@@ -16,7 +16,7 @@ class ButtonTableViewCell: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    let image = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 40))?
+    let image = UIImage(systemName: Constants.loginButtonImageName, withConfiguration: UIImage.SymbolConfiguration(pointSize: 40))?
       .withTintColor(.systemTeal, renderingMode: .alwaysOriginal)
 
     button.setImage(image, for: .normal)

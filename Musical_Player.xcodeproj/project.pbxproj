@@ -16,8 +16,13 @@
 		B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52666F327199FDB00A55A48 /* BaseViewController.swift */; };
 		B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D0E3F27425DF6007DE06F /* ButtonTableViewCell.swift */; };
 		B53D0E4227425DF6007DE06F /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */; };
+		B53E5D7E275B5B1E004E2B48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B53E5D80275B5B1E004E2B48 /* Localizable.strings */; };
+		B53E5D84275B5FBA004E2B48 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D83275B5FBA004E2B48 /* Localizable.swift */; };
+		B53E5D87275B638E004E2B48 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D86275B638E004E2B48 /* TabBarController.swift */; };
+		B53E5D8A275B63F2004E2B48 /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D89275B63F2004E2B48 /* LibraryController.swift */; };
 		B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555AC792744300C00365376 /* AuthViewController.swift */; };
 		B555AC7D27443F4D00365376 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B555AC7C27443F4D00365376 /* KeychainSwift */; };
+		B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568C44C2757CD800001CAD3 /* CellWrapper.swift */; };
 		B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56FCADE271C61F4002CEA5E /* assets.xcassets */; };
 		B597C2AE274EBFC100FD9819 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597C2AD274EBFC100FD9819 /* HeaderView.swift */; };
 		B597C2B0274EC77600FD9819 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597C2AF274EC77600FD9819 /* Validator.swift */; };
@@ -65,7 +70,14 @@
 		B52666F327199FDB00A55A48 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B53D0E3F27425DF6007DE06F /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		B53E5D7B275B5AD0004E2B48 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B53E5D7F275B5B1E004E2B48 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B53E5D81275B5B20004E2B48 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B53E5D83275B5FBA004E2B48 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B53E5D86275B638E004E2B48 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		B53E5D89275B63F2004E2B48 /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
 		B555AC792744300C00365376 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		B568C44C2757CD800001CAD3 /* CellWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWrapper.swift; sourceTree = "<group>"; };
 		B56FCADE271C61F4002CEA5E /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		B597C2AD274EBFC100FD9819 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B597C2AF274EC77600FD9819 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -154,10 +166,8 @@
 		B5322A502726910100EF5841 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B53D0E3D2742550C007DE06F /* BaseViewController */,
-				B55AB01E273FE2A500A792E8 /* SignInViewController */,
-				B51F134027424E8500F44593 /* SignUpViewController */,
-				B555AC7E2744441A00365376 /* AuthViewController */,
+				B53E5D8C275B6981004E2B48 /* MainControllers */,
+				B53E5D8B275B694C004E2B48 /* AuthorizeControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 				B5B34932270E207C00E7DE1C /* AppDelegate.swift */,
 				B5B34934270E207C00E7DE1C /* SceneDelegate.swift */,
 				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
+				B53E5D80275B5B1E004E2B48 /* Localizable.strings */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -175,10 +186,9 @@
 		B5322A522726912C00EF5841 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B53E5D8D275B69B3004E2B48 /* LoginViews */,
 				B585983127390287003EE8E9 /* LoginViewCells */,
 				B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */,
-				B597C2AD274EBFC100FD9819 /* HeaderView.swift */,
-				B597C2B1274EC7B200FD9819 /* MemberView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +208,60 @@
 				B53D0E4027425DF6007DE06F /* ButtonTableViewCell.xib */,
 			);
 			path = "Button Cell";
+			sourceTree = "<group>";
+		};
+		B53E5D82275B5FA2004E2B48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B53E5D83275B5FBA004E2B48 /* Localizable.swift */,
+				B59AB0FA2750C15A00E49A8C /* ValidatorError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B53E5D85275B6364004E2B48 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				B53E5D86275B638E004E2B48 /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		B53E5D88275B63D9004E2B48 /* LibraryController */ = {
+			isa = PBXGroup;
+			children = (
+				B53E5D89275B63F2004E2B48 /* LibraryController.swift */,
+			);
+			path = LibraryController;
+			sourceTree = "<group>";
+		};
+		B53E5D8B275B694C004E2B48 /* AuthorizeControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B555AC7E2744441A00365376 /* AuthViewController */,
+				B55AB01E273FE2A500A792E8 /* SignInViewController */,
+				B51F134027424E8500F44593 /* SignUpViewController */,
+			);
+			path = AuthorizeControllers;
+			sourceTree = "<group>";
+		};
+		B53E5D8C275B6981004E2B48 /* MainControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B53D0E3D2742550C007DE06F /* BaseViewController */,
+				B53E5D85275B6364004E2B48 /* TabBarController */,
+				B53E5D88275B63D9004E2B48 /* LibraryController */,
+			);
+			path = MainControllers;
+			sourceTree = "<group>";
+		};
+		B53E5D8D275B69B3004E2B48 /* LoginViews */ = {
+			isa = PBXGroup;
+			children = (
+				B597C2AD274EBFC100FD9819 /* HeaderView.swift */,
+				B597C2B1274EC7B200FD9819 /* MemberView.swift */,
+			);
+			path = LoginViews;
 			sourceTree = "<group>";
 		};
 		B555AC7E2744441A00365376 /* AuthViewController */ = {
@@ -227,11 +291,10 @@
 			path = LoginViewCells;
 			sourceTree = "<group>";
 		};
-		B59AB0F72750BE5B00E49A8C /* Models */ = {
+		B59AB0F72750BE5B00E49A8C /* SpotifyModels */ = {
 			isa = PBXGroup;
 			children = (
 				B59AB0F82750BE6F00E49A8C /* TokenResponse.swift */,
-				B59AB0FA2750C15A00E49A8C /* ValidatorError.swift */,
 				B5CD57442750CC8200B9FB61 /* AudioTrackResponse.swift */,
 				B5CD57462750CE3A00B9FB61 /* Album.swift */,
 				B5CD57482750CE4300B9FB61 /* Artist.swift */,
@@ -239,7 +302,7 @@
 				B5CD574E2750D9B900B9FB61 /* RecommendationResponse.swift */,
 				B5CD57502750DA4700B9FB61 /* RecommendedGenresResponse.swift */,
 			);
-			path = Models;
+			path = SpotifyModels;
 			sourceTree = "<group>";
 		};
 		B5B34926270E207B00E7DE1C = {
@@ -261,7 +324,8 @@
 		B5B34931270E207C00E7DE1C /* Musical_Player */ = {
 			isa = PBXGroup;
 			children = (
-				B59AB0F72750BE5B00E49A8C /* Models */,
+				B53E5D82275B5FA2004E2B48 /* Models */,
+				B59AB0F72750BE5B00E49A8C /* SpotifyModels */,
 				B522C2B0273D402B0093206A /* Extensions */,
 				B522C2AD273D3FB10093206A /* Managers */,
 				B5322A512726911000EF5841 /* Resourses */,
@@ -276,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F04D122751628D00850A2D /* SignInViewModel.swift */,
+				B568C44C2757CD800001CAD3 /* CellWrapper.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -326,6 +391,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = B5B34926270E207B00E7DE1C;
 			packageReferences = (
@@ -348,6 +414,7 @@
 				B5FDF24427119F4100B1AF38 /* SignInViewController.xib in Resources */,
 				B5B3493F270E207F00E7DE1C /* LaunchScreen.storyboard in Resources */,
 				B53D0E4227425DF6007DE06F /* ButtonTableViewCell.xib in Resources */,
+				B53E5D7E275B5B1E004E2B48 /* Localizable.strings in Resources */,
 				B5E529C5272468CC0060CEBC /* SignUpViewController.xib in Resources */,
 				B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */,
 				B51F134A2742523700F44593 /* InputCell.xib in Resources */,
@@ -368,10 +435,12 @@
 				B507D62D2745055E009F2966 /* SpoifyAPI.swift in Sources */,
 				B59AB0F92750BE6F00E49A8C /* TokenResponse.swift in Sources */,
 				B5CD57472750CE3A00B9FB61 /* Album.swift in Sources */,
+				B53E5D8A275B63F2004E2B48 /* LibraryController.swift in Sources */,
 				B5CD57452750CC8200B9FB61 /* AudioTrackResponse.swift in Sources */,
 				B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */,
 				B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */,
 				B59AB0FB2750C15A00E49A8C /* ValidatorError.swift in Sources */,
+				B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */,
 				B5CD57512750DA4700B9FB61 /* RecommendedGenresResponse.swift in Sources */,
 				B52666F427199FDB00A55A48 /* BaseViewController.swift in Sources */,
 				B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */,
@@ -382,6 +451,8 @@
 				B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */,
 				B597C2B0274EC77600FD9819 /* Validator.swift in Sources */,
 				B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */,
+				B53E5D84275B5FBA004E2B48 /* Localizable.swift in Sources */,
+				B53E5D87275B638E004E2B48 /* TabBarController.swift in Sources */,
 				B5CD574F2750D9B900B9FB61 /* RecommendationResponse.swift in Sources */,
 				B522C2B2273D404E0093206A /* String+Extension.swift in Sources */,
 				B5CD57492750CE4300B9FB61 /* Artist.swift in Sources */,
@@ -393,10 +464,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B53E5D80275B5B1E004E2B48 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B53E5D7F275B5B1E004E2B48 /* ru */,
+				B53E5D81275B5B20004E2B48 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B5B3493D270E207F00E7DE1C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B5B3493E270E207F00E7DE1C /* Base */,
+				B53E5D7B275B5AD0004E2B48 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -408,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -469,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
