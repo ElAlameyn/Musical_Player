@@ -60,21 +60,6 @@ extension SignUpViewController {
       case .input(let cellInfo):
         let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
         
-        let value: String
-        
-        switch cellInfo.key {
-        case .email:
-          value = info.email
-        case .password:
-          value = info.password
-        case .userName:
-          value = info.userName
-        case .confirmPassword:
-          value = info.confirmPassword
-        }
-        
-//        cell.fill(info: InputCell.Info(placeholder: , value: <#T##String#>, isSecure: <#T##Bool#>))
-        
         cell.textChanged = { [weak self] text in
           switch cellInfo.key {
           case .email:
