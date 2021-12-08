@@ -1,25 +1,31 @@
-//
-//  PlayViewController.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 08.12.2021.
-//
 
+import SDWebImage
 import UIKit
 
 class PlayViewController: UIViewController {
   
-  private let controllerView = PLayerControlsView()
+  weak var dataSource: PlayerDataSource?
+  
+  private let controllerView = PlayerControlsView()
   private let imageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
       
       view.backgroundColor = .systemBackground
+      
       configureBarButtons()
       addControllerView()
       addImageView()
+      
+      configure()
+      
+      controllerView.delegate = self
     }
+  
+  private func configure() {
+    imageView.sd_setImage(with: dataSource?.imageURL, completed: nil)
+  }
   
   private func addImageView() {
     imageView.contentMode = .scaleAspectFill
@@ -37,7 +43,7 @@ class PlayViewController: UIViewController {
     
     controllerView.translatesAutoresizingMaskIntoConstraints = false
     controllerView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    controllerView.heightAnchor.constraint(equalToConstant: 170).isActive = true
+    controllerView.heightAnchor.constraint(equalToConstant: 180).isActive = true
   }
   
   private func configureBarButtons() {
@@ -51,6 +57,19 @@ class PlayViewController: UIViewController {
   
   @objc func didTapAction() {
     
+  }
+
+}
+
+extension PlayViewController: PlayerControlsViewDelegate {
+  
+  func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {
+  }
+  
+  func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView) {
+  }
+  
+  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
   }
 
 }

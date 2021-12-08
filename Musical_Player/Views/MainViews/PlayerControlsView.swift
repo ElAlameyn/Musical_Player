@@ -1,7 +1,16 @@
 import UIKit
 
-final class PLayerControlsView: UIView {
+protocol PlayerControlsViewDelegate: AnyObject {
+  func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView)
+  func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView)
+  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView)
   
+}
+
+final class PlayerControlsView: UIView {
+  
+  weak var delegate: PlayerControlsViewDelegate?
+
   private let slider = UISlider()
   private let nameLabel = UILabel()
   private let subtitleLabel = UILabel()
@@ -9,13 +18,46 @@ final class PLayerControlsView: UIView {
   private let forwardButton = UIButton()
   private let pauseButton = UIButton()
   
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    self.backgroundColor = .systemBackground
+    
+    addBackButton()
+    addForwardButton()
+    addPauseButton()
+    
+    addVolumeSlide()
+    
+    addSubtitleLabel()
+    addNameLabel()
+    
+    backButton.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
+    forwardButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
+    pauseButton.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
+    
+  }
+  
+  @objc private func didTapPlayPause() {
+    delegate?.PLayerControlsViewDidTapPlayPause(self)
+  }
+  
+  @objc private func didTapBack() {
+    delegate?.PLayerControlsViewDidTapBackwardButton(self)
+  }
+  
+  @objc private func didTapNext() {
+    delegate?.PLayerControlsViewDidTapForwardButton(self)
+  }
+
+  
   private func addVolumeSlide() {
     slider.value = 0.5
     
     addSubview(slider)
     
     slider.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 5, left: 10, bottom: 10, right: -10))
-    slider.bottomAnchor.constraint(equalTo: pauseButton.topAnchor, constant: -10).isActive = true
+    slider.bottomAnchor.constraint(equalTo: pauseButton.topAnchor, constant: -20).isActive = true
   }
 
   private func addNameLabel() {
@@ -74,27 +116,12 @@ final class PLayerControlsView: UIView {
     pauseButton.firstBaselineAnchor.constraint(equalTo: backButton.firstBaselineAnchor).isActive = true
   }
 
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    
-    addBackButton()
-    addForwardButton()
-    addPauseButton()
-    
-    addVolumeSlide()
-    
-    addSubtitleLabel()
-    addNameLabel()
-    
-  }
-  
+
   required init?(coder: NSCoder) {
     fatalError()
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    self.backgroundColor = .red
-    
   }
 }

@@ -44,6 +44,7 @@
 		B5CD57512750DA4700B9FB61 /* RecommendedGenresResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD57502750DA4700B9FB61 /* RecommendedGenresResponse.swift */; };
 		B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E529C2272468CC0060CEBC /* SignUpViewController.swift */; };
 		B5E529C5272468CC0060CEBC /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5E529C3272468CC0060CEBC /* SignUpViewController.xib */; };
+		B5E79AC92761306F004B1DEE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = B5E79AC82761306F004B1DEE /* SDWebImage */; };
 		B5F04D132751628D00850A2D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F04D122751628D00850A2D /* SignInViewModel.swift */; };
 		B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F1ACD6273B001D00B0B03E /* UITableViewCell+Extension.swift */; };
 		B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FDF24127119F4100B1AF38 /* SignInViewController.swift */; };
@@ -115,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E79AC92761306F004B1DEE /* SDWebImage in Frameworks */,
 				B555AC7D27443F4D00365376 /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +391,7 @@
 			name = Musical_Player;
 			packageProductDependencies = (
 				B555AC7C27443F4D00365376 /* KeychainSwift */,
+				B5E79AC82761306F004B1DEE /* SDWebImage */,
 			);
 			productName = Musical_Player;
 			productReference = B5B3492F270E207C00E7DE1C /* Musical_Player.app */;
@@ -421,6 +424,7 @@
 			mainGroup = B5B34926270E207B00E7DE1C;
 			packageReferences = (
 				B555AC7B27443F4D00365376 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				B5E79AC72761306F004B1DEE /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = B5B34930270E207C00E7DE1C /* Products */;
 			projectDirPath = "";
@@ -727,6 +731,14 @@
 				kind = branch;
 			};
 		};
+		B5E79AC72761306F004B1DEE /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -734,6 +746,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B555AC7B27443F4D00365376 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		B5E79AC82761306F004B1DEE /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5E79AC72761306F004B1DEE /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
