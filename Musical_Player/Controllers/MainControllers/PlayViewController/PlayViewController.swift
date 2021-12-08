@@ -9,31 +9,36 @@ import UIKit
 
 class PlayViewController: UIViewController {
   
-  private let imageView: UIImageView = {
-    let imageView = UIImageView()
-    imageView.contentMode = .scaleAspectFill
-    imageView.backgroundColor = .systemBlue
-    return imageView
-  }()
-  
   private let controllerView = PLayerControlsView()
+  private let imageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
       
       view.backgroundColor = .systemBackground
       configureBarButtons()
-      
-      view.addSubview(imageView)
-      view.addSubview(controllerView)
-      
-      imageView.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
-      imageView.addCenterConstraints()
-      
-      controllerView.translatesAutoresizingMaskIntoConstraints = false
-      controllerView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-      controllerView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+      addControllerView()
+      addImageView()
     }
+  
+  private func addImageView() {
+    imageView.contentMode = .scaleAspectFill
+    imageView.backgroundColor = .systemBlue
+    
+    view.addSubview(imageView)
+    
+    imageView.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+    imageView.bottomAnchor.constraint(equalTo: controllerView.topAnchor, constant: -10).isActive = true
+    imageView.addCenterConstraints()
+  }
+  
+  private func addControllerView() {
+    view.addSubview(controllerView)
+    
+    controllerView.translatesAutoresizingMaskIntoConstraints = false
+    controllerView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    controllerView.heightAnchor.constraint(equalToConstant: 170).isActive = true
+  }
   
   private func configureBarButtons() {
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapClose))
@@ -48,6 +53,4 @@ class PlayViewController: UIViewController {
     
   }
 
-
-    
 }
