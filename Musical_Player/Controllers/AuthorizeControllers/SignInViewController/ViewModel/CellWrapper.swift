@@ -10,7 +10,7 @@ struct CellWrapper {
     CellWrapper { tableView, indexPath, info in
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
         
-      cell.fill(info: cellInfo, value: cellInfo.key)
+      cell.fill(info: cellInfo)
       cell.textChanged = { text in
         output(text, cellInfo.key)
       }

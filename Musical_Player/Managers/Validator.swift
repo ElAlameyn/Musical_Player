@@ -9,6 +9,8 @@ import Foundation
 
 class Validator {
   
+  static let shared = Validator()
+  
   func isValid(email: String) -> ValidatorError {
     
     let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
