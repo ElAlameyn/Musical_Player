@@ -26,8 +26,6 @@ class StorageManager {
     keychain.set(userName, forKey: Const.userName, withAccess: .accessibleWhenUnlocked)
     keychain.set(email, forKey: Const.email, withAccess: .accessibleWhenUnlocked)
     keychain.set(password, forKey: Const.password, withAccess: .accessibleWhenUnlocked)
-    
-    print("USER NAME: \(String(describing: keychain.get(Const.userName)))")
   }
   
   func checkUserInfo(email: String, password: String) -> Bool {
@@ -42,4 +40,8 @@ class StorageManager {
     keychain.set(token, forKey: Const.token, withAccess: .accessibleWhenUnlocked)
   }
   
+  func parse<T: Decodable>(json: Data)  throws -> T {
+    let decoder = JSONDecoder()
+    return try decoder.decode(T.self, from: json)
+  }
 }

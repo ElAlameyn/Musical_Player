@@ -27,53 +27,29 @@ class SpotifyAPI {
     case urlError
     case responseError
   }
-  
 
-//  func getRecommendations() -> Result<RecommendationResponse, Error> {
-//
-//    var seeds = Set<String>()
-//    var recommendationResponse: RecommendationResponse?
-//
-//    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + Const.recommendedGenres), method: "GET") else {
-//      return .failure(ApiError.urlError)
-//    }
-//
-//      self.subscriber = URLSession.shared.dataTaskPublisher(for: request)
-//        .map({$0.data})
-//        .decode(type: RecommendedGenresResponse.self, decoder: JSONDecoder())
-//        .receive(on: RunLoop.main)
-//        .eraseToAnyPublisher().sink(receiveCompletion: {_ in}, receiveValue: { recommendedGenresResponse in
-//          let genres = recommendedGenresResponse.genres
-//          while seeds.count < 5 {
-//            if let random = genres.randomElement() {
-//              seeds.insert(random)
-//            }
-//          }
-//        })
-//
-//    let seedsForApi = seeds.joined(separator: ",")
-//    guard let requestForRecommendations = createRequestWithToken(url: URL(string: Const.baseAPIURL + Const.recommendations + "&seed_genres=\(seedsForApi)"), method: "GET") else {
-//      return .failure(ApiError.urlError)
-//    }
-//
-//    self.subscriber = URLSession.shared.dataTaskPublisher(for: requestForRecommendations)
-//        .map({$0.data})
-//        .decode(type: RecommendationResponse.self, decoder: JSONDecoder())
-//        .receive(on: RunLoop.main)
-//        .eraseToAnyPublisher()
-//        .sink(receiveCompletion: {_ in},
-//              receiveValue: { response in
-//          recommendationResponse = response
-//        })
-//
-//    if let recResp = recommendationResponse {
-//      return .success(recResp)
-//    } else {
-//      return .failure(ApiError.responseError)
-//    }
-//
-//  }
-
+  public func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse, Error>) -> Void)) {
+    
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + Const.recommendedGenres), method: "GET") else {
+      completion(.failure(ApiError.urlError))
+      return
+    }
+    
+      URLSession.shared.dataTask(with: request) { data, _, error in
+        guard let data = data, error == nil else {
+          completion(.failure(ApiError.responseError))
+          return
+        }
+        
+        do {
+          let result = try JSONDecoder().decode(RecommendedGenresResponse.self, from: data)
+          completion(.success(result))
+        } catch {
+          completion(.failure(error))
+        }
+      }.resume()
+      
+  }
 
   func getToken(with code: String, url: URL) -> AnyPublisher<TokenResponse, Error> {
     var request = URLRequest(url: url)

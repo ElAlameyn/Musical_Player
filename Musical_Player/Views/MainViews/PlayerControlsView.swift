@@ -4,7 +4,6 @@ protocol PlayerControlsViewDelegate: AnyObject {
   func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView)
   func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView)
   func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView)
-  
 }
 
 final class PlayerControlsView: UIView {
@@ -87,7 +86,7 @@ final class PlayerControlsView: UIView {
   
   private func addBackButton() {
     backButton.tintColor = .label
-    let image = UIImage(systemName: "backward.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
+    let image = UIImage(systemName: Constants.controlsBackButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     backButton.setImage(image, for: .normal)
     
     addSubview(backButton)
@@ -97,7 +96,7 @@ final class PlayerControlsView: UIView {
   
   private func addForwardButton() {
     forwardButton.tintColor = .label
-    let image = UIImage(systemName: "forward.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
+    let image = UIImage(systemName: Constants.controlsForwardButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     forwardButton.setImage(image, for: .normal)
     
     addSubview(forwardButton)
@@ -107,7 +106,7 @@ final class PlayerControlsView: UIView {
   
   private func addPauseButton() {
     pauseButton.tintColor = .label
-    let image = UIImage(systemName: "pause", withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
+    let image = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     pauseButton.setImage(image, for: .normal)
     
     addSubview(pauseButton)
