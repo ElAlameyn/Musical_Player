@@ -30,8 +30,4 @@ class ButtonTableViewCell: UITableViewCell {
   }
 
   
-  func addButtonTarget(_ target: Any?, action: Selector) {
-    button.addTarget(target, action: action, for: .touchUpInside)
-  }
-  
 }

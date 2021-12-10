@@ -28,33 +28,9 @@ class SpotifyAPI {
     case responseError
   }
 
-  public func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse, Error>) -> Void)) {
-    
-    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + Const.recommendedGenres), method: "GET") else {
-      completion(.failure(ApiError.urlError))
-      return
-    }
-    
-      URLSession.shared.dataTask(with: request) { data, _, error in
-        guard let data = data, error == nil else {
-          completion(.failure(ApiError.responseError))
-          return
-        }
-        
-        do {
-          let result = try JSONDecoder().decode(RecommendedGenresResponse.self, from: data)
-          completion(.success(result))
-        } catch {
-          completion(.failure(error))
-        }
-      }.resume()
-      
-  }
-
   func getToken(with code: String, url: URL) -> AnyPublisher<TokenResponse, Error> {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    
     // Set HTTP headers
     request.setValue("Basic \("\(AuthViewController.Const.clientID):\(AuthViewController.Const.clientServer)".toBase64())", forHTTPHeaderField: "Authorization")
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -78,6 +54,54 @@ class SpotifyAPI {
       .decode(type: TokenResponse.self, decoder: JSONDecoder())
       .receive(on: RunLoop.main)
       .eraseToAnyPublisher()
+  }
+  
+  public func getRecommendedGenres() -> Set<String> {
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations/available-genre-seeds"), method: "GET")
+    else { return [] }
+    
+    var genres = Set<String>()
+    
+    let publisher = URLSession.shared.dataTaskPublisher(for: request)
+      .map { $0.data }
+      .decode(type: RecommendedGenresResponse.self,
+              decoder: JSONDecoder())
+//      .mapError(ApiError.responseError)
+      .receive(on: DispatchQueue.main)
+      .eraseToAnyPublisher()
+
+    subscriber = publisher.sink { completion in
+      switch completion {
+      case .finished:
+        break
+      case .failure(let error):
+        print(error)
+      }
+    } receiveValue: { achievedGenres in
+      _ = achievedGenres.genres.reduce(0) { res, el in
+        if res < 5 { genres.insert(el)}
+        return res + 1
+    }
+      print(genres)
+  }
+    return genres
+}
+  
+  public func getRecommendationsTracks() -> [AudioTrack] {
+    let seeds = getRecommendedGenres().joined(separator: ",")
+    print(seeds)
+    
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations?seed_genres=\(seeds)&seed_artists=&seed_tracks=&limit=40"), method: "GET") else { return [] }
+
+    let audioTracks = [AudioTrack]()
+    
+    let publisher = URLSession.shared.dataTaskPublisher(for: request)
+      .map { $0.data }
+      .decode(type: RecommendationResponse.self, decoder: JSONDecoder())
+      .receive(on: DispatchQueue.main)
+      .eraseToAnyPublisher()
+
+    return audioTracks
   }
   
   // MARK: - Private

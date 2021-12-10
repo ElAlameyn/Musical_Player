@@ -1,11 +1,3 @@
-//
-//  BaseViewController.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 15.10.2021.
-//
-
-import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
@@ -18,6 +10,11 @@ class BaseViewController: UIViewController {
     
     configTableView()
     
+    tracks = SpotifyAPI.shared.getRecommendationsTracks()
+    print(tracks)
+  }
+  
+  func testReadFromFile() {
     guard let fileURL = Bundle.main.url(forResource: "music", withExtension: "json") else { return }
     guard let data = try? Data(contentsOf: fileURL) else {
       fatalError()
@@ -29,8 +26,8 @@ class BaseViewController: UIViewController {
     } catch {
       print("Failed to read from file")
     }
-    
   }
+  
   
   func configTableView() {
     tableView.dataSource = self
