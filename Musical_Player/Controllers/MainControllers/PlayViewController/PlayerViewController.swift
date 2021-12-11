@@ -2,13 +2,13 @@
 import SDWebImage
 import UIKit
 
-class PlayViewController: UIViewController {
-  
-  weak var dataSource: PlayerDataSource?
+
+class PlayerViewController: UIViewController {
   
   private let controllerView = PlayerControlsView()
   private let imageView = UIImageView()
 
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -18,13 +18,16 @@ class PlayViewController: UIViewController {
       addControllerView()
       addImageView()
       
-      configure()
-      
+
       controllerView.delegate = self
     }
   
-  private func configure() {
-    imageView.sd_setImage(with: dataSource?.imageURL, completed: nil)
+  public func configure(with viewModel: ViewModel) {
+    imageView.sd_setImage(with: URL(string: viewModel.imageURL), completed: nil)
+    controllerView.configure(
+      with: PlayerControlsView.ViewModel(
+        title: viewModel.songName,
+        subtitle: viewModel.subtitle))
   }
   
   private func addImageView() {
@@ -57,18 +60,33 @@ class PlayViewController: UIViewController {
   @objc func didTapAction() {
     
   }
+  
+  var forward: (() -> (Void))?
+  var backward: (() -> (Void))?
 
 }
 
-extension PlayViewController: PlayerControlsViewDelegate {
+extension PlayerViewController: PlayerControlsViewDelegate {
   
+  struct ViewModel {
+    var songName: String
+    var subtitle: String
+    var imageURL: String
+  }
+  
+  func PLayerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float) {
+  }
+
   func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {
+    AudioPlayer.shared.exchange()
   }
   
   func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView) {
+    forward?()
   }
   
   func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
+    backward?()
   }
 
 }

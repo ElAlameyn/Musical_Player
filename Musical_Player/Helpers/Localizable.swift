@@ -14,6 +14,7 @@ struct Constants {
   static let controlsBackButton = "backward.fill"
   static let controlsForwardButton = "forward.fill"
   static let controlsPauseButton = "pause"
+  static let controlsPlayButton = "play.fill"
 }
 
 struct Localizable {

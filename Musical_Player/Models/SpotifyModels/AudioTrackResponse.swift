@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct AudioTrack: Codable {
+struct AudioTrack: Codable, Equatable {
+  
+  static func == (lhs: AudioTrack, rhs: AudioTrack) -> Bool {
+    lhs.id == rhs.id
+  }
+  
   let album: Album?
   let artists: [Artist]
   let available_markets: [String]
@@ -17,4 +22,5 @@ struct AudioTrack: Codable {
   let external_urls: [String: String]
   let id: String
   let name: String
+  let preview_url: String?
 }
