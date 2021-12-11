@@ -13,7 +13,7 @@ final class PlaybackPresenter {
   private var tracks = [AudioTrack]()
   
   var currentTrack: AudioTrack? {
-    if let track = track, !tracks.isEmpty {
+    if let track = track, tracks.isEmpty {
       return track
     } else if !tracks.isEmpty {
       return tracks.first
@@ -21,8 +21,6 @@ final class PlaybackPresenter {
     
     return nil
   }
-  
-  //call in didselectrowat
   
   func startPlayback(from viewController: UIViewController, track: AudioTrack) {
     

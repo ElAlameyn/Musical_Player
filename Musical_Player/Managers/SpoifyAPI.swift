@@ -68,9 +68,6 @@ class SpotifyAPI {
     guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations?seed_genres=\(seeds)&seed_artists=&seed_tracks=&limit=40"), method: "GET") else { fatalError() }
     
     let publisher: AnyPublisher<RecommendationResponse, Error> = getPublisher(request: request)
-    subscriber = publisher.sink(receiveCompletion: {_ in}, receiveValue: { answer in
-      print("TRACKS: \(answer)")
-    })
     return publisher
   }
   

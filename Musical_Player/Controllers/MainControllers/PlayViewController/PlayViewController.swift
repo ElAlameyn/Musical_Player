@@ -28,9 +28,8 @@ class PlayViewController: UIViewController {
   }
   
   private func addImageView() {
-    imageView.contentMode = .scaleAspectFill
-    imageView.backgroundColor = .systemBlue
-    
+    imageView.contentMode = .scaleAspectFit
+
     view.addSubview(imageView)
     
     imageView.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
@@ -42,8 +41,8 @@ class PlayViewController: UIViewController {
     view.addSubview(controllerView)
     
     controllerView.translatesAutoresizingMaskIntoConstraints = false
-    controllerView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    controllerView.heightAnchor.constraint(equalToConstant: 180).isActive = true
+    controllerView.addEdgeConstraints(exclude: .top,offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    controllerView.heightAnchor.constraint(equalToConstant: 200).isActive = true
   }
   
   private func configureBarButtons() {

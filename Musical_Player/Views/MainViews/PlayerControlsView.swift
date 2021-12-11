@@ -26,15 +26,14 @@ final class PlayerControlsView: UIView {
     addForwardButton()
     addPauseButton()
     
+    addNameLabel()
+    addSubtitleLabel()
     addVolumeSlide()
     
-    addSubtitleLabel()
-    addNameLabel()
-    
+
     backButton.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
     forwardButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
     pauseButton.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
-    
   }
   
   @objc private func didTapPlayPause() {
@@ -55,8 +54,8 @@ final class PlayerControlsView: UIView {
     
     addSubview(slider)
     
-    slider.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 5, left: 10, bottom: 10, right: -10))
-    slider.bottomAnchor.constraint(equalTo: pauseButton.topAnchor, constant: -20).isActive = true
+    slider.addEdgeConstraints(exclude: .bottom, .top, .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10))
+    slider.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 10).isActive = true
   }
 
   private func addNameLabel() {
@@ -69,7 +68,6 @@ final class PlayerControlsView: UIView {
     nameLabel.text = "Song Name"
     
     nameLabel.addEdgeConstraints(exclude: .bottom, .top, offset: UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5))
-    nameLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -10).isActive = true
   }
   
   private func addSubtitleLabel() {
@@ -80,8 +78,8 @@ final class PlayerControlsView: UIView {
     addSubview(subtitleLabel)
     
     subtitleLabel.text = "Subtitle"
-    subtitleLabel.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
-    subtitleLabel.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -10).isActive = true
+    subtitleLabel.addEdgeConstraints(exclude: .bottom, .bottom, offset: UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
+    subtitleLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
   }
   
   private func addBackButton() {

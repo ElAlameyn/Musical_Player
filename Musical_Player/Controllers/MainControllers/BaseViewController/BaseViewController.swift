@@ -11,8 +11,8 @@ class BaseViewController: UIViewController {
   
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
-    title = "Featured tracks"
-    
+    title = "Featured  Tracks"
+
     configTableView()
     
     subscriber = SpotifyAPI.shared.getGenres().sink(receiveCompletion: {_ in}) {[weak self] result in
@@ -57,7 +57,6 @@ class BaseViewController: UIViewController {
     view.addSubview(tableView)
     
     tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-//    tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80).isActive = true
   }
 }
 
