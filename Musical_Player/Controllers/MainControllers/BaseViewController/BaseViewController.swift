@@ -1,17 +1,36 @@
 import UIKit
+import Combine
 
 class BaseViewController: UIViewController {
   
   var tableView = UITableView()
   var tracks = [AudioTrack]()
   
+  var subscriber: AnyCancellable?
+  var subscriber2: AnyCancellable?
+  
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
+    title = "Featured tracks"
     
     configTableView()
     
-    tracks = SpotifyAPI.shared.getRecommendationsTracks()
-    print(tracks)
+    subscriber = SpotifyAPI.shared.getGenres().sink(receiveCompletion: {_ in}) {[weak self] result in
+
+      var values = Set<String>()
+      _ = result.genres.reduce(0) { res, el in
+        if res < 5 { values.insert(el)}
+        return res + 1
+      }
+      
+      let seeds = values.joined(separator: ",")
+      self?.subscriber?.cancel()
+      
+      self?.subscriber = SpotifyAPI.shared.getRecommendations(seeds: seeds).sink(receiveCompletion: {_ in}) {[weak self] result in
+        self?.tracks = result.tracks
+        self?.tableView.reloadData()
+      }
+    }
   }
   
   func testReadFromFile() {
@@ -38,6 +57,7 @@ class BaseViewController: UIViewController {
     view.addSubview(tableView)
     
     tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+//    tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80).isActive = true
   }
 }
 
