@@ -4,17 +4,15 @@ import Combine
 class BaseViewController: UIViewController {
   
   var tableView = UITableView()
-  var tracks = [AudioTrack]() {
-    didSet {
-//      AudioPlayer.shared.tracks = tracks
-    }
-  }
+  var tracks = [AudioTrack]()
+  
   var backwardTrack: AudioTrack?
   var forwardTrack: AudioTrack?
-  
-  
+
   var subscriber: AnyCancellable?
-  var subscriber2: AnyCancellable?
+  
+  var playerViewController: PlayerViewController?
+
   
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
@@ -88,50 +86,46 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     selectAndPlayChosenTrack(track: tracks[indexPath.row])
   }
   
-  private func openAndPlay(track: AudioTrack, in viewController: PlayerViewController) {
-    AudioPlayer.shared.track = track
-
-    viewController.configure(
-      with: PlayerViewController.ViewModel(
-        songName: track.name,
-        subtitle: track.artists.first?.name ?? "",
-        imageURL: track.album?.images.first?.url ?? ""
-      )
-    )
-    
-    AudioPlayer.shared.selectAndPlayChosenTrack(track: track)
-  }
-
   private func selectAndPlayChosenTrack(track: AudioTrack) {
-    let playerViewController = PlayerViewController()
-    playerViewController.title = track.name
-    
-    backwardTrack = track
-    forwardTrack = track
-    
-    openAndPlay(track: track, in: playerViewController)
 
-    playerViewController.backward = { [weak self] in
-      guard let existBackward = self?.backwardTrack else { return }
-      guard let newBackwardTrack = self?.tracks.before(existBackward) else { return }
-      self?.backwardTrack = newBackwardTrack
-      
-      self?.openAndPlay(track: newBackwardTrack, in: playerViewController)
-      self?.forwardTrack = self?.backwardTrack
-    }
+    AudioPlayer.shared.tracks = tracks
+    AudioPlayer.shared.track = track
     
-    playerViewController.forward = { [weak self] in
-      guard let existForward = self?.forwardTrack else { return }
-      guard let newForwardTrack = self?.tracks.after(existForward) else { return }
-      self?.forwardTrack = newForwardTrack
-      
-      self?.openAndPlay(track: newForwardTrack, in: playerViewController)
-      self?.backwardTrack = self?.forwardTrack
-    }
-
+    configureAndRunPlayerViewController(with: track)
+    
+    guard let playerViewController = playerViewController else { return }
     present(UINavigationController(rootViewController: playerViewController),
             animated: true,
             completion: {
     })
+  }
+  
+  private func configureAndRunPlayerViewController(with track: AudioTrack) {
+    playerViewController = PlayerViewController()
+    playerViewController?.title = track.name
+    
+    playerViewController?.getNextViewModel = { [weak self] in
+      guard let track = AudioPlayer.shared.track else { return }
+      self?.configurePlayerViewModel(with: track)
+    }
+    
+    playerViewController?.getPreviousViewModel = { [weak self] in
+      guard let track = AudioPlayer.shared.track else { return }
+      self?.configurePlayerViewModel(with: track)
+    }
+    
+    playerViewController?.getNilPlayer = { [weak self] in
+      self?.playerViewController = nil
+    }
+    
+    configurePlayerViewModel(with: track)
+
+  }
+  
+  private func configurePlayerViewModel(with track: AudioTrack) {
+    playerViewController?.viewModel = PlayerViewController.ViewModel(
+      songName: track.name,
+      subtitle: track.artists.first?.name ?? "",
+      imageURL: track.album?.images.first?.url ?? "")
   }
 }

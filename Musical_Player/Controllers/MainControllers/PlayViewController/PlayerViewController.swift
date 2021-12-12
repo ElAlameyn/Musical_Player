@@ -1,14 +1,17 @@
-
 import SDWebImage
 import UIKit
-
 
 class PlayerViewController: UIViewController {
   
   private let controllerView = PlayerControlsView()
   private let imageView = UIImageView()
-
   
+  var viewModel: ViewModel? {
+    didSet {
+      configure()
+    }
+  }
+
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -18,16 +21,18 @@ class PlayerViewController: UIViewController {
       addControllerView()
       addImageView()
       
+      configure()
 
       controllerView.delegate = self
     }
   
-  public func configure(with viewModel: ViewModel) {
-    imageView.sd_setImage(with: URL(string: viewModel.imageURL), completed: nil)
+  private func configure() {
+    imageView.sd_setImage(with: URL(string: viewModel?.imageURL ?? ""), completed: nil)
+    
     controllerView.configure(
       with: PlayerControlsView.ViewModel(
-        title: viewModel.songName,
-        subtitle: viewModel.subtitle))
+        title: viewModel?.songName ?? "",
+        subtitle: viewModel?.subtitle ?? ""))
   }
   
   private func addImageView() {
@@ -55,14 +60,16 @@ class PlayerViewController: UIViewController {
   
   @objc func didTapClose() {
     dismiss(animated: true, completion: nil)
+    getNilPlayer?()
   }
   
   @objc func didTapAction() {
     
   }
   
-  var forward: (() -> (Void))?
-  var backward: (() -> (Void))?
+  var getNilPlayer: (() -> (Void))?
+  var getNextViewModel: (() -> (Void))?
+  var getPreviousViewModel: (() -> (Void))?
 
 }
 
@@ -82,11 +89,12 @@ extension PlayerViewController: PlayerControlsViewDelegate {
   }
   
   func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView) {
-    forward?()
-  }
-  
-  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
-    backward?()
+    AudioPlayer.shared.playNext()
+    getNextViewModel?()
   }
 
+  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
+    AudioPlayer.shared.playPrevious()
+    getPreviousViewModel?()
+  }
 }
