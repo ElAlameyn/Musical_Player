@@ -61,7 +61,7 @@ class BaseViewController: UIViewController {
     tableView.dataSource = self
     tableView.delegate = self
     
-    tableView.register(UITableViewCell.self)
+    tableView.register(TrackViewCell.self)
     
     view.addSubview(tableView)
     
@@ -77,9 +77,13 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.textLabel?.text = tracks[indexPath.row].name
+    let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 70
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
