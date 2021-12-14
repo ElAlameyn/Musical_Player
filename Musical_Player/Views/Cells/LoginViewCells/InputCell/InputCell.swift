@@ -4,9 +4,7 @@ import UIKit
 class InputCell: UITableViewCell {
   
   @IBOutlet var inputTextField: UITextField!
-  
-  var isValid: ((String) -> ValidatorError)?
-  
+
   enum CellInfo {
   case email, password, confirmPassword, userName
     
@@ -49,16 +47,16 @@ class InputCell: UITableViewCell {
       }
     }
     
-    var isValid: (String) -> ValidatorError {
+    var validator: Validator<String> {
       switch self {
       case .email:
-        return Validator.shared.isValid(email:)
+        return .emailValidation
       case .password:
-        return Validator.shared.isValid(password:)
+        return .passwordValidation
       case .confirmPassword:
-        return Validator.shared.isValid(password:)
+        return .passwordValidation
       case .userName:
-        return Validator.shared.isValid(userName:)
+        return .userValidation
       }
     }
 
@@ -80,21 +78,10 @@ class InputCell: UITableViewCell {
   func fill(info: CellInfo) {
     inputTextField.placeholder = info.placeholder
     inputTextField.isSecureTextEntry = info.isSecure
-    self.isValid = info.isValid
   }
 
   @objc func textFieldValueChanged(sender: UITextField) {
     textChanged?(sender.text ?? "")
-    
-    guard let text = sender.text else { return }
-    guard let valid = isValid?(text).isValid else { return }
-    
-    if valid {
-      backgroundColor = .green
-    } else {
-      backgroundColor = .red
-    }
   }
-
 }
 

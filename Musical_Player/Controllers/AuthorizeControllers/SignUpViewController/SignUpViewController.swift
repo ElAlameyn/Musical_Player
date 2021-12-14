@@ -12,8 +12,6 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
   
   let viewModel = ViewModel()
 
-  let validator = Validator()
-  
   @IBOutlet var tableView: UITableView!
   
 
@@ -59,25 +57,6 @@ class SignUpViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     guard info.password == info.confirmPassword else { return }
 
-    let passwordValid = validator.isValid(password: info.password)
-    let emailValid = validator.isValid(email: info.email)
-    let userNameValid = validator.isValid(userName: info.userName)
-    
-    guard passwordValid.isValid else {
-      // error
-      return
-    }
-    
-    guard emailValid.isValid else {
-      // error
-      return
-    }
-    
-    guard userNameValid.isValid else {
-      // error
-      return
-    }
-    
     StorageManager.shared.saveUserInfo(userName: info.userName, email: info.email, password: info.password)
 
     let baseViewController = BaseViewController()

@@ -11,10 +11,17 @@ struct CellWrapper {
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
         
       cell.fill(info: cellInfo)
-      cell.textChanged = { text in
-        output(text, cellInfo.key)
-      }
       
+      cell.textChanged = { text in
+        let result = cellInfo.validator.run(text)
+        switch result {
+        case .validated(let string):
+          output(string, cellInfo.key)
+          cell.backgroundColor = .green
+        case .error(_):
+          cell.backgroundColor = .red
+        }
+      }
       return cell
     }
   }

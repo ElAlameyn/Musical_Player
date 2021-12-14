@@ -1,41 +1,89 @@
+//  Musical_Player
+//
+//  Created by Артем Калинкин on 15.12.2021.
+//
 
 import Foundation
 
-class Validator {
+struct Validator<T> {
+  let run: (String) -> Validated<T>
   
-  static let shared = Validator()
-  
-  func isValid(email: String) -> ValidatorError {
-    
-    let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-    
-    if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: email) {
-      return ValidatorError(isValid: true, errorInfo: nil)
-    } else {
-      return ValidatorError(isValid: false, errorInfo: "Email is not valid")
+  func compose(_ validators: Validator<T>...) -> Validator<T> {
+    Validator<T> { string in
+      validators.reduce(run(string)) { (result, validator) -> Validated<T> in
+        result.merge(other: validator.run(string))
+      }
     }
   }
   
-  // Minimum 8 characters at least 1 Alphabet and 1 Number
-  func isValid(password: String) -> ValidatorError {
-    
-    let regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-    
-    if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: password) {
-      return ValidatorError(isValid: true, errorInfo: nil)
-    } else {
-      return ValidatorError(isValid: false, errorInfo: "Email is not valid")
+  func map<B>(_ f: @escaping (T) -> B) -> Validator<B> {
+    Validator<B> { string in
+      let rt = run(string)
+      switch rt {
+      case .validated( let t):
+        return .validated(f(t))
+      case .error(let errors):
+        return .error(errors)
+      }
+    }
+  }
+}
+
+enum Validated<T> {
+  case validated(T)
+  case error([String])
+  
+  var getValue: T? {
+    switch self {
+    case .error: return nil
+    case .validated(let t): return t
     }
   }
   
-  func isValid(userName: String) -> ValidatorError {
-    
-    let regex = "^\\w{7,18}$"
-    
-    if NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: userName) {
-      return ValidatorError(isValid: true, errorInfo: nil)
-    } else {
-      return ValidatorError(isValid: false, errorInfo: "Email is not valid")
+  var getError: [String]? {
+    switch self {
+    case .error(let errors): return errors
+    case .validated: return nil
+    }
+  }
+  
+  func merge(other: Validated<T>) -> Validated<T> {
+    switch self {
+    case .validated:
+      switch other {
+      case .validated(let valid): return .validated(valid)
+      case .error(let error): return .error(error)
+      }
+    case .error(let errors):
+      switch other {
+      case .validated: return .error(errors)
+      case .error(let errors2): return .error(errors + errors2)
+      }
+    }
+  }
+}
+
+
+extension Validator {
+  
+  static var emailValidation: Validator<String> {
+    Validator<String> { string in
+      let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+      return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string) ? .validated(string) : .error(["Incorrect email"])
+    }
+  }
+  
+  static var passwordValidation: Validator<String> {
+    Validator<String> { string in
+      let regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+      return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string) ? .validated(string) : .error(["Incorrect password"])
+    }
+  }
+  
+  static var userValidation: Validator<String> {
+    Validator<String> { string in
+      let regex = "^\\w{7,18}$"
+      return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string) ? .validated(string) : .error(["Incorrect user"])
     }
   }
 }
