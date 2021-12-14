@@ -1,10 +1,3 @@
-//
-//  AuthViewController.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 16.11.2021.
-//
-
 import UIKit
 import WebKit
 import Combine

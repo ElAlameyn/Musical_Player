@@ -1,13 +1,8 @@
-//
-//  SignInViewModel.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 26.11.2021.
-//
 
 import UIKit
 
 extension SignInViewController {
+  
   class ViewModel {
     
     var continueButtonTapped: ((Info) -> Void)?

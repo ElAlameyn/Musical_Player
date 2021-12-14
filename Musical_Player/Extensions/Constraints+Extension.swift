@@ -1,9 +1,3 @@
-//
-//  Constraints+Extension.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 14.11.2021.
-//
 
 import UIKit
 

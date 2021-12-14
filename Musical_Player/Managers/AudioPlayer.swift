@@ -42,8 +42,8 @@ final class AudioPlayer {
   
   public func playNext() {
     playerQueue?.pause()
-    player?.pause()
-      
+    player = nil
+
     guard let currentTrack = track, let track = tracks.after(currentTrack) else { return }
     self.track = track
     playTrack()
@@ -51,14 +51,12 @@ final class AudioPlayer {
   
   public func playPrevious() {
     playerQueue?.pause()
-    player?.pause()
+    player = nil
       
     guard let currentTrack = track, let track = tracks.before(currentTrack) else { return }
     self.track = track
     playTrack()
   }
-  
-  
 
   public func exchange() {
     if player?.timeControlStatus == .paused {

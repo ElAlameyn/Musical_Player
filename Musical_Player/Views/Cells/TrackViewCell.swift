@@ -33,7 +33,7 @@ class TrackViewCell: UITableViewCell {
 
     contentView.addSubview(subtitle)
     
-    subtitle.addEdgeConstraints(exclude: .bottom, .top, offset: UIEdgeInsets(top: 0, left: 80, bottom: -10, right: 0))
+    subtitle.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 80, bottom: -10, right: 0))
     subtitle.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
   }
   

@@ -47,7 +47,8 @@ final class PlayerControlsView: UIView {
 
   
   @objc private func didTapPlayPause() {
-    self.isPlaying = !isPlaying
+    self.isPlaying.toggle()
+    
     delegate?.PLayerControlsViewDidTapPlayPause(self)
     
     let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
@@ -57,11 +58,17 @@ final class PlayerControlsView: UIView {
   }
   
   @objc private func didTapBack() {
+    self.isPlaying = true
     delegate?.PLayerControlsViewDidTapBackwardButton(self)
+    let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
+    pauseButton.setImage(pause, for: .normal)
   }
   
   @objc private func didTapNext() {
+    self.isPlaying = true
     delegate?.PLayerControlsViewDidTapForwardButton(self)
+    let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
+    pauseButton.setImage(pause, for: .normal)
   }
 
   

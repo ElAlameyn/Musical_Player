@@ -1,9 +1,3 @@
-//
-//  ButtonTableViewCell.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 15.11.2021.
-//
 
 import UIKit
 

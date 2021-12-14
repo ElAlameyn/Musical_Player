@@ -5,9 +5,6 @@ class BaseViewController: UIViewController {
   
   var tableView = UITableView()
   var tracks = [AudioTrack]()
-  
-  var backwardTrack: AudioTrack?
-  var forwardTrack: AudioTrack?
 
   var subscriber: AnyCancellable?
   
@@ -16,11 +13,9 @@ class BaseViewController: UIViewController {
   
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
-    title = "Featured  Tracks"
-    
+
     configTableView()
     getFeaturedTrack()
-
   }
   
   private func getFeaturedTrack() {
@@ -66,6 +61,8 @@ class BaseViewController: UIViewController {
     view.addSubview(tableView)
     
     tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    
+    tableView.tableHeaderView = BaseHeaderView()
   }
 }
 
@@ -80,10 +77,6 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
     cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
     return cell
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -123,7 +116,6 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     configurePlayerViewModel(with: track)
-
   }
   
   private func configurePlayerViewModel(with track: AudioTrack) {

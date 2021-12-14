@@ -1,9 +1,3 @@
-//
-//  UITableViewCell+Extension.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 09.11.2021.
-//
 
 import UIKit
 

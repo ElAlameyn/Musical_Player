@@ -1,6 +1,6 @@
 import UIKit
 
-class HeaderView: UIView {
+class LoginHeaderView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)

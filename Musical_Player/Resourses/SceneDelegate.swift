@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 06.10.2021.
-//
 
 import UIKit
 

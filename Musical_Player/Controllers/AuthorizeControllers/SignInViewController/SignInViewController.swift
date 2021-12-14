@@ -35,7 +35,7 @@ class SignInViewController: UIViewController, UITableViewDataSource, UITableView
   }
   
   func configTableView() {
-    tableView.tableHeaderView = HeaderView()
+    tableView.tableHeaderView = LoginHeaderView()
 
     tableView.registerNib(cellClass: InputCell.self, bundle: .main)
     tableView.registerNib(cellClass: ButtonTableViewCell.self, bundle: .main)

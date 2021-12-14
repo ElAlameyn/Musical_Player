@@ -1,9 +1,3 @@
-//
-//  SpoifyAPI.swift
-//  Musical_Player
-//
-//  Created by Артем Калинкин on 17.11.2021.
-//
 
 import Foundation
 import Combine
