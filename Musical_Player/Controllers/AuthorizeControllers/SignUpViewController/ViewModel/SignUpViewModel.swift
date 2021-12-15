@@ -12,86 +12,51 @@ extension SignUpViewController {
     
     var continueButtonTapped: ((Info) -> Void)?
     
-    struct Info {
-      var userName: String
-      var email: String
-      var password: String
-      var confirmPassword: String
+    class Info: NSObject {
+      @objc var userName: String
+      @objc var email: String
+      @objc var password: String
+      @objc var confirmPassword: String
+
+      init(userName: String, email: String, password: String, confirmPassword: String) {
+        self.userName = userName
+        self.confirmPassword = confirmPassword
+        self.email = email
+        self.password = password
+      }
     }
-    
-    private let cells: [Cells] = [.input(.userName), .input(.email), .input(.password), .input(.confirmPassword), .submitButton]
     
     private(set) var info = Info(userName: "", email: "", password: "", confirmPassword: "")
+
+    private var cellWrappers: [CellWrapper] = []
     
-    enum Cells {
-      case input(InputCellInfo)
-      case submitButton
-      
-      struct InputCellInfo {
-        let placeholder: String
-        let isSecure: Bool
-        let key: Key
-        
-        enum Key {
-          case email, password, userName, confirmPassword
-        }
-        
-        static var confirmPassword: InputCellInfo {
-          InputCellInfo(placeholder: "ConfirmPassword", isSecure: true, key: .confirmPassword)
-        }
-        
-        static var userName: InputCellInfo {
-          InputCellInfo(placeholder: "UserName", isSecure: false, key: .userName)
-        }
-        
-        static var email: InputCellInfo {
-          InputCellInfo(placeholder: "Email", isSecure: false, key: .email)
-        }
-        
-        static var password: InputCellInfo {
-          InputCellInfo(placeholder: "Password", isSecure: true, key: .password)
-        }
-      }
-    }
-    
-    
-    func getCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, of type: Cells) -> UITableViewCell {
-      switch type {
-      case .input(let cellInfo):
-        let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
-        
-        cell.textChanged = { [weak self] text in
-          switch cellInfo.key {
-          case .email:
-            self?.info.email = text
-          case .password:
-            self?.info.password = text
-          case .userName:
-            self?.info.userName = text
-          case .confirmPassword:
-            self?.info.confirmPassword = text
-          }
-        }
-        
-        return cell
-        
-      case .submitButton:
-        let cell: ButtonTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-        cell.buttonTapped = { [unowned self] in
+    init() {
+      cellWrappers = [
+        .inputCell(cellInfo: .userName, output: { [weak self] text, key in
+          self?.info.setValue(text, forKey: key)
+        }),
+        .inputCell(cellInfo: .email, output: { [weak self] text, key in
+          self?.info.setValue(text, forKey: key)
+        }),
+        .inputCell(cellInfo: .password, output: { [weak self] text, key in
+          self?.info.setValue(text, forKey: key)
+        }),
+        .inputCell(cellInfo: .confirmPassword, output: { [weak self] text, key in
+          self?.info.setValue(text, forKey: key)
+        }),
+        .logInButton(output: { [unowned self] in
           self.continueButtonTapped?(self.info)
-        }
-        return cell
-      }
+        })
+      ]
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-      cells.count
+      cellWrappers.count
     }
     
     func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-      let cell = getCell(tableView, cellForRowAt: indexPath, of: cells[indexPath.row])
+      let cell = cellWrappers[indexPath.row].cell(tableView, indexPath, info)
       return cell
     }
-
   }
 }

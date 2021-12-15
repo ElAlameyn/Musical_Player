@@ -189,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				B585983127390287003EE8E9 /* LoginViewCells */,
-				B527F63F2764D4CD00D066D9 /* TrackViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -336,10 +335,19 @@
 		B585983127390287003EE8E9 /* LoginViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				B58C4371276A7CD90007FCB7 /* TrackViewCell */,
 				B53D0E3E27425D8D007DE06F /* Button Cell */,
 				B51F134827424FC000F44593 /* InputCell */,
 			);
 			path = LoginViewCells;
+			sourceTree = "<group>";
+		};
+		B58C4371276A7CD90007FCB7 /* TrackViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B527F63F2764D4CD00D066D9 /* TrackViewCell.swift */,
+			);
+			path = TrackViewCell;
 			sourceTree = "<group>";
 		};
 		B59AB0F72750BE5B00E49A8C /* SpotifyModels */ = {
@@ -393,6 +401,7 @@
 				B53E5D83275B5FBA004E2B48 /* Localizable.swift */,
 				B59AB0FA2750C15A00E49A8C /* ValidatorError.swift */,
 				B5E6B90827665DE100D669FB /* Constants.swift */,
+				B568C44C2757CD800001CAD3 /* CellWrapper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -401,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				B5F04D122751628D00850A2D /* SignInViewModel.swift */,
-				B568C44C2757CD800001CAD3 /* CellWrapper.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

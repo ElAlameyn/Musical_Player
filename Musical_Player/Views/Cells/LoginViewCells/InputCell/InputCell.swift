@@ -71,6 +71,12 @@ class InputCell: UITableViewCell {
     inputTextField.layer.shadowOffset.height = 0.3
     
     inputTextField.addTarget(self, action: #selector(textFieldValueChanged(sender:)), for: .editingChanged)
+    
+//    let imageView = UIImageView(image: UIImage(systemName: "xmark"))
+//    let view = UIView()
+//    view.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//    view.backgroundColor = .blue
+//    inputTextField.leftView = view
   }
   
   var textChanged: ((String) -> Void)?

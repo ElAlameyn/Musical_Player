@@ -1,7 +1,7 @@
 import UIKit
 
 struct CellWrapper {
-  let cell: (UITableView, IndexPath, SignInViewController.ViewModel.Info) -> UITableViewCell
+  let cell: (UITableView, IndexPath, NSObject) -> UITableViewCell
   
   static func inputCell(
     cellInfo: InputCell.CellInfo,
