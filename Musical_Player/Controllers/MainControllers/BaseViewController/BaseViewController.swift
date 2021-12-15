@@ -9,6 +9,7 @@ class BaseViewController: UIViewController {
   var subscriber: AnyCancellable?
   
   var playerViewController: PlayerViewController?
+  
 
   
   override func viewDidLoad() {
