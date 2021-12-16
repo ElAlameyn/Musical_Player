@@ -5,7 +5,7 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+
       self.navigationItem.setHidesBackButton(true, animated: true)
       setViewControllers([addBaseVC(), addCollectionVC()], animated: true)
     }

@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import SDWebImage
 
 class BaseViewController: UIViewController {
   
@@ -8,15 +9,49 @@ class BaseViewController: UIViewController {
 
   var subscriber: AnyCancellable?
   
+  var imageView = UIImageView()
+  
   var playerViewController: PlayerViewController?
-  
+  var currentImageURL: String = "" {
+    didSet {
+      imageView.sd_setImage(with: URL(string: currentImageURL))
+    }
+  }
 
-  
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
 
     configTableView()
     getFeaturedTrack()
+    
+    view.addSubview(imageView)
+    
+    imageView.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    imageView.layer.cornerRadius = 20
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.zPosition = -1
+    imageView.alpha = 0.4
+
+    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
+      .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let downImageView = UIImageView(image: image)
+    
+    view.addSubview(downImageView)
+    
+    downImageView.addCenterConstraints(exclude: .axisY)
+    downImageView.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    downImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+
+    
+    let rightImage = UIImage(systemName: "chevron.right.2", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
+      .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let rightButtonImageView = UIImageView(image: rightImage)
+    
+    view.addSubview(rightButtonImageView)
+    
+    rightButtonImageView.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 100, y: -10))
+    rightButtonImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -30).isActive = true
   }
   
   private func getFeaturedTrack() {
@@ -56,12 +91,14 @@ class BaseViewController: UIViewController {
   private func configTableView() {
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.layer.cornerRadius = 20
+    tableView.layer.borderColor = UIColor.black.cgColor
     
     tableView.register(TrackViewCell.self)
     
     view.addSubview(tableView)
     
-    tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0))
     
     tableView.tableHeaderView = BaseHeaderView()
   }
@@ -76,12 +113,16 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
+    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name,
+                                                    subtitle: tracks[indexPath.row].artists.first?.name ?? "",
+                                                    imageURL: tracks[indexPath.row].album?.images.first?.url ?? ""
+    )
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectAndPlayChosenTrack(track: tracks[indexPath.row])
+//    selectAndPlayChosenTrack(track: tracks[indexPath.row])
+    currentImageURL = tracks[indexPath.row].album?.images.first?.url ?? ""
   }
   
   private func selectAndPlayChosenTrack(track: AudioTrack) {

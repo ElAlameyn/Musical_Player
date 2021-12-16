@@ -9,9 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    let navVC = UINavigationController(rootViewController: SpotifyLoginVC())
-    navVC.navigationBar.prefersLargeTitles = false
-    window?.rootViewController = navVC
+//    let navVC = UINavigationController(rootViewController: SpotifyLoginVC())
+//    navVC.navigationBar.prefersLargeTitles = false
+    window?.rootViewController = BaseViewController()
     window?.makeKeyAndVisible()
     
   }
