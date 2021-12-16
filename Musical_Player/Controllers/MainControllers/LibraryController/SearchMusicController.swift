@@ -48,34 +48,18 @@ class SearchMusicController: UIViewController, UISearchResultsUpdating {
             completion: {
     })
   }
-}
-
-
-extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tracks.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
-    return cell
-  }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectAndPlayChosenTrack(track: tracks[indexPath.row])
-  }
   
   func updateSearchResults(for searchController: UISearchController) {
+    guard !self.isLoading else { return }
     subscriber = NotificationCenter.default
       .publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
       .map({($0.object as? UISearchTextField)?.text})
       .receive(on: RunLoop.main)
       .sink(receiveValue: {[weak self] text in
         if let text = text {
+
+          guard text.count > 2 else { return }
           self?.currentOffset = 0
-          guard let isLoading = self?.isLoading, !isLoading  else { return }
           self?.isLoading = true
           
           self?.subscriber = SpotifyAPI.shared.getSearchedTracks(queue: text, offset: self?.currentOffset ?? 0)
@@ -113,5 +97,22 @@ extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
       }
     }
   }
+}
+
+
+extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
   
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return tracks.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
+    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectAndPlayChosenTrack(track: tracks[indexPath.row])
+  }
 }

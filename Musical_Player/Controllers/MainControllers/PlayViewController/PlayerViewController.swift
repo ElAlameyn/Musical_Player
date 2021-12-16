@@ -82,6 +82,7 @@ extension PlayerViewController: PlayerControlsViewDelegate {
   }
   
   func PLayerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float) {
+    AudioPlayer.shared.changeVolumeWith(value)
   }
 
   func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {

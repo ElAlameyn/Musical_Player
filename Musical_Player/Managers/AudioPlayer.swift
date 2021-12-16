@@ -65,5 +65,9 @@ final class AudioPlayer {
       player?.pause()
     }
   }
+  
+  public func changeVolumeWith(_ value: Float) {
+    player?.volume = value
+  }
 
 }
