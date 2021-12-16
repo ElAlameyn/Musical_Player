@@ -22,6 +22,8 @@
 		B53E5D84275B5FBA004E2B48 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D83275B5FBA004E2B48 /* Localizable.swift */; };
 		B53E5D87275B638E004E2B48 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D86275B638E004E2B48 /* TabBarController.swift */; };
 		B53E5D8A275B63F2004E2B48 /* SearchMusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E5D89275B63F2004E2B48 /* SearchMusicController.swift */; };
+		B55458B6276BBA710030A4ED /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55458B5276BBA710030A4ED /* SearchResponse.swift */; };
+		B55458B8276BBB5F0030A4ED /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55458B7276BBB5F0030A4ED /* test.swift */; };
 		B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555AC792744300C00365376 /* AuthViewController.swift */; };
 		B555AC7D27443F4D00365376 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B555AC7C27443F4D00365376 /* KeychainSwift */; };
 		B557706927601C110043BC73 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B557706827601C110043BC73 /* AudioPlayer.swift */; };
@@ -88,6 +90,8 @@
 		B53E5D83275B5FBA004E2B48 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		B53E5D86275B638E004E2B48 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B53E5D89275B63F2004E2B48 /* SearchMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicController.swift; sourceTree = "<group>"; };
+		B55458B5276BBA710030A4ED /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		B55458B7276BBB5F0030A4ED /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		B555AC792744300C00365376 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B557706827601C110043BC73 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		B557706B27601CF60043BC73 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
 				B53E5D80275B5B1E004E2B48 /* Localizable.strings */,
 				B5E79ACA27613741004B1DEE /* music.json */,
+				B55458B7276BBB5F0030A4ED /* test.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				B5CD574A2750CEDC00B9FB61 /* APIImage.swift */,
 				B5CD574E2750D9B900B9FB61 /* RecommendationResponse.swift */,
 				B5CD57502750DA4700B9FB61 /* RecommendedGenresResponse.swift */,
+				B55458B5276BBA710030A4ED /* SearchResponse.swift */,
 			);
 			path = SpotifyModels;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 				B5E6B90B2766600F00D669FB /* BaseHeaderView.swift in Sources */,
 				B5CD57452750CC8200B9FB61 /* AudioTrackResponse.swift in Sources */,
 				B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */,
+				B55458B8276BBB5F0030A4ED /* test.swift in Sources */,
 				B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */,
 				B59AB0FB2750C15A00E49A8C /* ValidatorError.swift in Sources */,
 				B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */,
@@ -526,6 +533,7 @@
 				B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */,
 				B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */,
 				B527F6402764D4CD00D066D9 /* TrackViewCell.swift in Sources */,
+				B55458B6276BBA710030A4ED /* SearchResponse.swift in Sources */,
 				B527F6422765331B00D066D9 /* Collection+Extension.swift in Sources */,
 				B5F1ACD7273B001D00B0B03E /* UITableViewCell+Extension.swift in Sources */,
 				B557706927601C110043BC73 /* AudioPlayer.swift in Sources */,

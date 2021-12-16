@@ -65,6 +65,14 @@ class SpotifyAPI {
     return publisher
   }
   
+  public func getSearchedTracks(queue: String, offset: Int) -> AnyPublisher<SearchResponse, Error> {
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/search?type=track&q=\(queue)&limit=20&offset=\(offset)"), method: "GET") else { fatalError() }
+    print(request.url)
+    
+    let publisher: AnyPublisher<SearchResponse, Error> = getPublisher(request: request)
+    return publisher
+  }
+  
 
   // MARK: - Private
   

@@ -21,9 +21,10 @@ class TabBarController: UITabBarController {
   
   private func addCollectionVC() -> UIViewController {
     let collectionVC = SearchMusicController()
-    collectionVC.tabBarItem.title = Localizable.tabBarHomeTitle
-    collectionVC.tabBarItem.image = UIImage(systemName: Constants.tabBarHomeImageName)
-    return collectionVC
+    collectionVC.tabBarItem.title = Localizable.tabBarCollectionTitle
+    collectionVC.tabBarItem.image = UIImage(systemName: Constants.tabBarCollectionImageName)
+    let nav = UINavigationController(rootViewController: collectionVC)
+    return nav
   }
   
 }
