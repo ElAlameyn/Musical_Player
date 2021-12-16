@@ -89,40 +89,15 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     AudioPlayer.shared.tracks = tracks
     AudioPlayer.shared.track = track
     
-    configureAndRunPlayerViewController(with: track)
+    let playback = PlayerPresenter(with: track)
     
-    guard let playerViewController = playerViewController else { return }
+    AudioPlayer.shared.playTrack()
+
+    guard let playerViewController = playback.playerViewController else { return }
     present(UINavigationController(rootViewController: playerViewController),
             animated: true,
             completion: {
     })
   }
   
-  private func configureAndRunPlayerViewController(with track: AudioTrack) {
-    playerViewController = PlayerViewController()
-    playerViewController?.title = track.name
-    
-    playerViewController?.getNextViewModel = { [weak self] in
-      guard let track = AudioPlayer.shared.track else { return }
-      self?.configurePlayerViewModel(with: track)
-    }
-    
-    playerViewController?.getPreviousViewModel = { [weak self] in
-      guard let track = AudioPlayer.shared.track else { return }
-      self?.configurePlayerViewModel(with: track)
-    }
-    
-    playerViewController?.getNilPlayer = { [weak self] in
-      self?.playerViewController = nil
-    }
-    
-    configurePlayerViewModel(with: track)
-  }
-  
-  private func configurePlayerViewModel(with track: AudioTrack) {
-    playerViewController?.viewModel = PlayerViewController.ViewModel(
-      songName: track.name,
-      subtitle: track.artists.first?.name ?? "",
-      imageURL: track.album?.images.first?.url ?? "")
-  }
 }

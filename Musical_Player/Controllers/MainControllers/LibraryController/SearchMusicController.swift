@@ -13,7 +13,7 @@ class SearchMusicController: UIViewController, UISearchResultsUpdating {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Search some awesome tracks"
+    title = "Search"
     view.backgroundColor = .systemBackground
     
     navigationItem.searchController = searchController
@@ -32,7 +32,24 @@ class SearchMusicController: UIViewController, UISearchResultsUpdating {
     
     tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
   }
+  
+  private func selectAndPlayChosenTrack(track: AudioTrack) {
+
+    AudioPlayer.shared.tracks = tracks
+    AudioPlayer.shared.track = track
+    
+    let playback = PlayerPresenter(with: track)
+    
+    AudioPlayer.shared.playTrack()
+
+    guard let playerViewController = playback.playerViewController else { return }
+    present(UINavigationController(rootViewController: playerViewController),
+            animated: true,
+            completion: {
+    })
+  }
 }
+
 
 extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
   
@@ -44,6 +61,10 @@ extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
     cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    selectAndPlayChosenTrack(track: tracks[indexPath.row])
   }
   
   func updateSearchResults(for searchController: UISearchController) {
@@ -92,4 +113,5 @@ extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
       }
     }
   }
+  
 }

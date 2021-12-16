@@ -7,8 +7,6 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
       
       self.navigationItem.setHidesBackButton(true, animated: true)
-      self.title = "Featured tracks"
-
       setViewControllers([addBaseVC(), addCollectionVC()], animated: true)
     }
   

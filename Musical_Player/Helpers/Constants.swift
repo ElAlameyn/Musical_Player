@@ -11,6 +11,6 @@ struct Constants {
   static let mainScreenHeaderViewPlayButton = "play.circle.fill"
   
   
-  static let tabBarCollectionImageName = "music.note.list"
+  static let tabBarCollectionImageName = "magnifyingglass"
   static let tabBarHomeImageName = "house"
 }
