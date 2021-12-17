@@ -32,7 +32,9 @@ class PlayerViewController: UIViewController {
     controllerView.configure(
       with: PlayerControlsView.ViewModel(
         title: viewModel?.songName ?? "",
-        subtitle: viewModel?.subtitle ?? ""))
+        subtitle: viewModel?.subtitle ?? "",
+        duration: viewModel?.duration
+      ))
   }
   
   private func addImageView() {
@@ -79,6 +81,7 @@ extension PlayerViewController: PlayerControlsViewDelegate {
     var songName: String
     var subtitle: String
     var imageURL: String
+    var duration: Int
   }
   
   func PLayerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float) {

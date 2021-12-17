@@ -20,7 +20,7 @@ class BaseViewController: UIViewController {
   }
   
   private func getFeaturedTrack() {
-    subscriber = SpotifyAPI.shared.getGenres().sink(receiveCompletion: {_ in}) {[weak self] result in
+    subscriber = SpotifyAPI.shared.getGenres()?.sink(receiveCompletion: {_ in}) {[weak self] result in
       
       var values = Set<String>()
       _ = result.genres.reduce(0) { res, el in
@@ -76,7 +76,8 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
+    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "",
+                                                    duration: tracks[indexPath.row].duration_ms)
     return cell
   }
   

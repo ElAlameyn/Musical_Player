@@ -42,7 +42,7 @@ final class PlayerControlsView: UIView {
   
   @objc func didSlideSlider(_ slider: UISlider) {
     let value = slider.value
-    delegate?.PLayerControlsView(self, didSlideSlider: value)
+//    delegate?.PLayerControlsView(self, didSlideSlider: value)
   }
 
   
@@ -73,7 +73,7 @@ final class PlayerControlsView: UIView {
 
   
   private func addVolumeSlide() {
-    slider.value = 0.5
+    slider.value = 0
     
     addSubview(slider)
     
@@ -156,6 +156,7 @@ extension PlayerControlsView  {
   struct ViewModel {
     let title: String?
     let subtitle: String?
+    let duration: Int?
   }
   
 }
