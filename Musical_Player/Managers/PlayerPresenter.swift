@@ -38,6 +38,9 @@ final class PlayerPresenter {
     playerViewController?.viewModel = PlayerViewController.ViewModel(
       songName: track.name,
       subtitle: track.artists.first?.name ?? "",
-      imageURL: track.album?.images.first?.url ?? "")
+      imageURL: track.album?.images.first?.url ?? "",
+      duration: track.duration_ms
+      
+    )
   }
 }

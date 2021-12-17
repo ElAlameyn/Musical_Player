@@ -50,8 +50,8 @@ class SpotifyAPI {
       .eraseToAnyPublisher()
   }
   
-  public func getGenres() -> AnyPublisher<RecommendedGenresResponse, Error> {
-    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations/available-genre-seeds"), method: "GET") else { fatalError() }
+  public func getGenres() -> AnyPublisher<RecommendedGenresResponse, Error>? {
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations/available-genre-seeds"), method: "GET") else { return nil}
     
     
     let publisher: AnyPublisher<RecommendedGenresResponse, Error> = getPublisher(request: request)

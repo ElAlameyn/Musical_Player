@@ -108,7 +108,7 @@ extension SearchMusicController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "")
+    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "", duration: tracks[indexPath.row].duration_ms)
     return cell
   }
   
