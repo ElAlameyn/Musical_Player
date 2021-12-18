@@ -48,7 +48,7 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
       let tokenURL = URL(string: Const.tokenAPIURl)
     else { return }
 
-    subscriber = SpotifyAPI.shared.getToken(with: code.value ?? "", url: tokenURL)
+    subscriber = SpotifyAPI.shared.getToken(with: code.value ?? "", url: tokenURL)?
       .sink(receiveCompletion: {_ in}, receiveValue: { [weak self] tokenResponse in
         StorageManager.shared.saveToken(token: tokenResponse.access_token)
         print("Token: \(tokenResponse.access_token)")

@@ -44,7 +44,7 @@ class BaseViewController: UIViewController {
       let seeds = values.joined(separator: ",")
       self?.subscriber?.cancel()
       
-      self?.subscriber = SpotifyAPI.shared.getRecommendations(seeds: seeds).sink(receiveCompletion: {_ in}) {[weak self] result in
+      self?.subscriber = SpotifyAPI.shared.getRecommendations(seeds: seeds)?.sink(receiveCompletion: {_ in}) {[weak self] result in
         self?.tracks = result.tracks
         self?.tableView.reloadData()
       }
@@ -91,11 +91,11 @@ class BaseViewController: UIViewController {
     imageView.layer.cornerRadius = 20
     imageView.contentMode = .scaleAspectFill
     imageView.layer.zPosition = -1
-    imageView.alpha = 0.25
+    imageView.alpha = 0.30
   }
   
   private func addDownArrow() {
-    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(50)))?
+    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
       .withTintColor(.black, renderingMode: .alwaysOriginal)
     let downImageView = UIImageView(image: image)
     
@@ -107,7 +107,7 @@ class BaseViewController: UIViewController {
   }
   
   private func addPause() {
-    let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(50)))?
+    let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
       .withTintColor(.black, renderingMode: .alwaysOriginal)
     let downImageView = UIImageView(image: image)
     
@@ -119,7 +119,7 @@ class BaseViewController: UIViewController {
   }
   
   private func addRightArrow() {
-    let rightImage = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(50)))?
+    let rightImage = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(44440)))?
       .withTintColor(.black, renderingMode: .alwaysOriginal)
     let rightButtonImageView = UIImageView(image: rightImage)
     
@@ -130,7 +130,7 @@ class BaseViewController: UIViewController {
   }
   
   private func addLeftArrow() {
-    let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(50)))?
+    let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
       .withTintColor(.black, renderingMode: .alwaysOriginal)
     let rightButtonImageView = UIImageView(image: image)
     
@@ -150,15 +150,11 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-<<<<<<< HEAD
     cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name,
                                                     subtitle: tracks[indexPath.row].artists.first?.name ?? "",
-                                                    imageURL: tracks[indexPath.row].album?.images.first?.url ?? ""
-    )
-=======
+                                                    imageURL: tracks[indexPath.row].album?.images.first?.url ?? "", duration: tracks[indexPath.row].duration_ms)
     cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "",
                                                     duration: tracks[indexPath.row].duration_ms)
->>>>>>> feature/lab2
     return cell
   }
   

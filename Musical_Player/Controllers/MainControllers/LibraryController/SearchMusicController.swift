@@ -62,7 +62,7 @@ class SearchMusicController: UIViewController, UISearchResultsUpdating {
           self?.currentOffset = 0
           self?.isLoading = true
           
-          self?.subscriber = SpotifyAPI.shared.getSearchedTracks(queue: text, offset: self?.currentOffset ?? 0)
+          self?.subscriber = SpotifyAPI.shared.getSearchedTracks(queue: text, offset: self?.currentOffset ?? 0)?
             .sink(receiveCompletion: {_ in} , receiveValue: { tracks in
               self?.tracks = tracks.tracks.items
               DispatchQueue.main.async {
@@ -83,7 +83,7 @@ class SearchMusicController: UIViewController, UISearchResultsUpdating {
         
         let oldCount = self.tracks.count
         
-        self.subscriber = SpotifyAPI.shared.getSearchedTracks(queue: text, offset: currentOffset)
+        self.subscriber = SpotifyAPI.shared.getSearchedTracks(queue: text, offset: currentOffset)?
           .sink(receiveCompletion: {_ in} , receiveValue: { tracks in
             self.tracks.append(contentsOf: tracks.tracks.items)
             DispatchQueue.main.async { [weak self] in

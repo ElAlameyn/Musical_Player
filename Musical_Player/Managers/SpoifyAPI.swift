@@ -22,7 +22,7 @@ class SpotifyAPI {
     case responseError
   }
   
-  func getToken(with code: String, url: URL) -> AnyPublisher<TokenResponse, Error> {
+  func getToken(with code: String, url: URL) -> AnyPublisher<TokenResponse, Error>? {
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     // Set HTTP headers
@@ -58,16 +58,16 @@ class SpotifyAPI {
     return publisher
   }
   
-  public func getRecommendations(seeds: String) -> AnyPublisher<RecommendationResponse, Error> {
-    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations?seed_genres=\(seeds)&seed_artists=&seed_tracks=&limit=40"), method: "GET") else { fatalError() }
+  public func getRecommendations(seeds: String) -> AnyPublisher<RecommendationResponse, Error>? {
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/recommendations?seed_genres=\(seeds)&seed_artists=&seed_tracks=&limit=40"), method: "GET") else { return nil }
     
     let publisher: AnyPublisher<RecommendationResponse, Error> = getPublisher(request: request)
     return publisher
   }
   
-  public func getSearchedTracks(queue: String, offset: Int) -> AnyPublisher<SearchResponse, Error> {
+  public func getSearchedTracks(queue: String, offset: Int) -> AnyPublisher<SearchResponse, Error>? {
     let q = queue.replacingOccurrences(of: " ", with: "")
-    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/search?type=track&q=\(q)&limit=20&offset=\(offset)"), method: "GET") else { fatalError() }
+    guard let request = createRequestWithToken(url: URL(string: Const.baseAPIURL + "/search?type=track&q=\(q)&limit=20&offset=\(offset)"), method: "GET") else { return nil }
 
     let publisher: AnyPublisher<SearchResponse, Error> = getPublisher(request: request)
     return publisher
