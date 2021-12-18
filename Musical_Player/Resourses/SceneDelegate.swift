@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.windowScene = windowScene
     let navVC = UINavigationController(rootViewController: SpotifyLoginVC())
     navVC.navigationBar.prefersLargeTitles = false
+    navVC.setNavigationBarHidden(true, animated: true)
     window?.rootViewController = navVC
 //    window?.rootViewController = SpotifyLoginVC()
     window?.makeKeyAndVisible()

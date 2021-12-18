@@ -88,8 +88,8 @@ extension SpotifyLoginVC: UITableViewDataSource {
     tableView.deselectRow(at: indexPath, animated: true)
     if cells[indexPath.row] == .submitButton {
       let authController = AuthViewController()
-      navigationController?.present(authController, animated: true, completion: { [weak self] in
-        self?.navigationController?.pushViewController(TabBarController(), animated: true)
+      navigationController?.present(authController, animated: true, completion: {
+        self.navigationController?.pushViewController(TabBarController(), animated: true)
       })
     }
   }

@@ -86,17 +86,31 @@ class BaseViewController: UIViewController {
   private func addImageView() {
     view.addSubview(imageView)
     
-    imageView.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    imageView.addEdgeConstraints(exclude: .bottom, .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
+    imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     imageView.layer.cornerRadius = 20
     imageView.contentMode = .scaleAspectFill
     imageView.layer.zPosition = -1
-    imageView.alpha = 0.30
+    imageView.alpha = 0.9
+    
+    let darkView = UIView()
+    darkView.backgroundColor = .black
+    darkView.alpha = 0.4
+    darkView.frame = imageView.frame
+    
+    imageView.addSubview(darkView)
+    
+    darkView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    darkView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//    darkView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    
+    
   }
   
   private func addDownArrow() {
-    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
-      .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+      .withTintColor(.white, renderingMode: .alwaysOriginal)
     let downImageView = UIImageView(image: image)
     
     view.addSubview(downImageView)
@@ -108,30 +122,30 @@ class BaseViewController: UIViewController {
   
   private func addPause() {
     let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
-      .withTintColor(.black, renderingMode: .alwaysOriginal)
+      .withTintColor(.white, renderingMode: .alwaysOriginal)
     let downImageView = UIImageView(image: image)
     
     view.addSubview(downImageView)
     
     downImageView.addCenterConstraints(exclude: .axisY)
     downImageView.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    downImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
+    downImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
   }
   
   private func addRightArrow() {
-    let rightImage = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(44440)))?
-      .withTintColor(.black, renderingMode: .alwaysOriginal)
-    let rightButtonImageView = UIImageView(image: rightImage)
+    let image = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+      .withTintColor(.white, renderingMode: .alwaysOriginal)
+    let imageView = UIImageView(image: image)
     
-    view.addSubview(rightButtonImageView)
+    view.addSubview(imageView)
     
-    rightButtonImageView.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 150, y: -10))
-    rightButtonImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
+    imageView.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 150, y: 0))
+    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
   }
   
   private func addLeftArrow() {
-    let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
-      .withTintColor(.black, renderingMode: .alwaysOriginal)
+    let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+      .withTintColor(.white, renderingMode: .alwaysOriginal)
     let rightButtonImageView = UIImageView(image: image)
     
     view.addSubview(rightButtonImageView)
@@ -146,8 +160,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     tracks.count
   }
-  
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
     cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name,
@@ -178,5 +191,4 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
             completion: {
     })
   }
-  
 }

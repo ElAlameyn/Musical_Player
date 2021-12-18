@@ -8,8 +8,12 @@ class TabBarController: UITabBarController {
 
       self.navigationItem.setHidesBackButton(true, animated: true)
       setViewControllers([addBaseVC(), addCollectionVC()], animated: true)
+      
+      tabBar.isTranslucent = true
+
     }
   
+
   private func addBaseVC() -> UIViewController {
     let baseVC = BaseViewController()
     baseVC.tabBarItem.title = Localizable.tabBarHomeTitle
