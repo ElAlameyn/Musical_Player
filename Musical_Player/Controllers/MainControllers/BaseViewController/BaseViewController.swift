@@ -4,31 +4,34 @@ import SDWebImage
 
 class BaseViewController: UIViewController {
   
-  var tableView = UITableView()
+  private var tableView = UITableView()
+  private var tracks = [AudioTrack]()
+  private var subscriber: AnyCancellable?
+  private var imageView = UIImageView()
+  private var titleSong = UILabel()
+  private var playerViewController: PlayerViewController?
   
-  var tracks = [AudioTrack]()
+  var isPlaying = false
 
-  var subscriber: AnyCancellable?
+  private let slider = UISlider()
+  private var sliderTimer: Timer?
   
-  var imageView = UIImageView()
+  private var pauseButton = UIButton()
   
-  var titleSong = UILabel()
-  
-  var playerViewController: PlayerViewController?
-  
-  var currentIndexPath: IndexPath! {
+  private var currentIndexPath: IndexPath! {
     didSet {
       tableView.selectRow(at: currentIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
   }
   
-  var currentTrack: AudioTrack! {
+  private var currentTrack: AudioTrack! {
     didSet {
       configTableViewWith(track: currentTrack)
+      configSlider(duration: Float(currentTrack.duration_ms), currentPosition: 0)
     }
   }
   
-  var currentImageURL: String = "" {
+  private var currentImageURL: String = "" {
     didSet {
       imageView.sd_setImage(with: URL(string: currentImageURL))
     }
@@ -49,6 +52,8 @@ class BaseViewController: UIViewController {
     addPause()
     
     addTitleSong()
+    
+    addSlider()
   }
   
   private func getFeaturedTrack() {
@@ -143,15 +148,15 @@ class BaseViewController: UIViewController {
     let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
     
-    let button = UIButton()
-    button.setImage(image, for: .normal)
-    view.addSubview(button)
+    pauseButton = UIButton()
+    pauseButton.setImage(image, for: .normal)
+    view.addSubview(pauseButton)
 
-    button.addCenterConstraints(exclude: .axisY)
-    button.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    button.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
+    pauseButton.addCenterConstraints(exclude: .axisY)
+    pauseButton.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    pauseButton.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
     
-    button.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
+    pauseButton.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
   }
   
   private func addRightArrow() {
@@ -197,27 +202,101 @@ class BaseViewController: UIViewController {
     titleSong.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
   }
   
+  private func addSlider() {
+    let image = UIImage(named: "sliderCircle")
+    let imageSize = CGSize(width: 20, height: 20)
+    let renderer = UIGraphicsImageRenderer(size: imageSize)
+    let scaledImage = renderer.image { _ in
+      image?.draw(in: CGRect(origin: .zero, size: imageSize))
+    }
+
+    slider.setThumbImage(scaledImage, for: .normal)
+    slider.setThumbImage(scaledImage, for: .normal)
+    slider.value = 0
+    slider.maximumValue = 1
+    slider.minimumValue = 0
+    view.addSubview(slider)
+    slider.topAnchor.constraint(equalTo: titleSong.bottomAnchor, constant: 10).isActive = true
+    slider.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10))
+    slider.sizeToFit()
+    slider.layer.zPosition = 2
+    
+//    slider.addTarget(self, action: #selector(sliderStop), for: .editingChanged)
+  }
+  
+  // MARK: - Slider Configuration
+  
+  private func configSlider(duration: Float, currentPosition: Float) {
+    slider.maximumValue = duration / 1000
+    slider.value = currentPosition
+    
+    sliderTimer?.invalidate()
+    sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+      guard let slider = self?.slider else {
+        timer.invalidate()
+        return
+      }
+      if slider.value != slider.maximumValue {
+        slider.setValue(slider.value + 1, animated: true)
+      } else {
+        timer.invalidate()
+      }
+    }
+  }
+  
+  private func sliderStop() {
+    sliderTimer?.invalidate()
+  }
+  
+  private func continueSliderMoving() {
+    sliderTimer?.invalidate()
+   sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+      guard let slider = self?.slider else {
+        timer.invalidate()
+        return
+      }
+      if slider.value != slider.maximumValue {
+        slider.setValue(slider.value + 1, animated: true)
+      } else {
+        timer.invalidate()
+      }
+    }
+  }
+
   // MARK: - Navigation Buttons
   
+
+  
   @objc func didTapNext() {
-    if let track = tracks.after(currentTrack) {
+      pauseButton.setFor(imageName: "pause.circle")
+    if currentTrack != nil, let track = tracks.after(currentTrack) {
       self.currentTrack = track
       self.currentIndexPath = IndexPath(row: currentIndexPath.row + 1, section: 0)
     }
   }
 
   @objc func didTapPrevious() {
-    if let track = tracks.before(currentTrack) {
+      pauseButton.setFor(imageName: "pause.circle")
+    if currentTrack != nil, let track = tracks.before(currentTrack) {
       self.currentTrack = track
       self.currentIndexPath = IndexPath(row: currentIndexPath.row - 1, section: 0)
     }
   }
   
+
   @objc func didTapPlayPause() {
-    AudioPlayer.shared.exchange()
+    isPlaying.toggle()
+    if !isPlaying {
+      sliderStop()
+      pauseButton.setFor(imageName: "play.circle")
+    } else {
+      continueSliderMoving()
+      pauseButton.setFor(imageName: "pause.circle")
+    }
   }
 
   @objc func didTapDown() {
+    
   }
 }
 
@@ -244,6 +323,11 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     currentTrack = tracks[indexPath.row]
     currentIndexPath = indexPath
 //    selectAndPlayChosenTrack(track: tracks[indexPath.row])
+    let timeFormatter = TimeFormatter()
+    print(timeFormatter.getFormattedDurationString(trackDuration: tracks[indexPath.row].duration_ms as NSNumber))
+    
+    isPlaying = true
+//    configSlider(duration: Float(tracks[indexPath.row].duration_ms), currentPosition: 0)
   }
   
   private func configTableViewWith(track: AudioTrack?) {

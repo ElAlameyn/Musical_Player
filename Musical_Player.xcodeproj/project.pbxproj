@@ -34,6 +34,9 @@
 		B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568C44C2757CD800001CAD3 /* CellWrapper.swift */; };
 		B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56FCADE271C61F4002CEA5E /* assets.xcassets */; };
 		B580030F276948DE009AF35F /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580030E276948DE009AF35F /* Validator.swift */; };
+		B58E9988277380CE00BA3228 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E9987277380CE00BA3228 /* CustomSlider.swift */; };
+		B58E998A27738A3D00BA3228 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E998927738A3D00BA3228 /* TimeFormatter.swift */; };
+		B58E998E2773C08F00BA3228 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E998D2773C08F00BA3228 /* UIButton+Extension.swift */; };
 		B597C2AE274EBFC100FD9819 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597C2AD274EBFC100FD9819 /* LoginHeaderView.swift */; };
 		B597C2B2274EC7B200FD9819 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597C2B1274EC7B200FD9819 /* MemberView.swift */; };
 		B59AB0F92750BE6F00E49A8C /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AB0F82750BE6F00E49A8C /* TokenResponse.swift */; };
@@ -101,6 +104,9 @@
 		B568C44C2757CD800001CAD3 /* CellWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWrapper.swift; sourceTree = "<group>"; };
 		B56FCADE271C61F4002CEA5E /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		B580030E276948DE009AF35F /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		B58E9987277380CE00BA3228 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		B58E998927738A3D00BA3228 /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
+		B58E998D2773C08F00BA3228 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		B597C2AD274EBFC100FD9819 /* LoginHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
 		B597C2B1274EC7B200FD9819 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		B59AB0F82750BE6F00E49A8C /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 				B522C2B1273D404E0093206A /* String+Extension.swift */,
 				B5AEE6832741106E00361C1C /* Constraints+Extension.swift */,
 				B527F6412765331B00D066D9 /* Collection+Extension.swift */,
+				B58E998D2773C08F00BA3228 /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -333,6 +340,7 @@
 			children = (
 				B557706E276020C20043BC73 /* PlayerControlsView.swift */,
 				B5E6B90A2766600F00D669FB /* BaseHeaderView.swift */,
+				B58E9987277380CE00BA3228 /* CustomSlider.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -419,6 +427,7 @@
 				B59AB0FA2750C15A00E49A8C /* ValidatorError.swift */,
 				B5E6B90827665DE100D669FB /* Constants.swift */,
 				B568C44C2757CD800001CAD3 /* CellWrapper.swift */,
+				B58E998927738A3D00BA3228 /* TimeFormatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B597C2B2274EC7B200FD9819 /* MemberView.swift in Sources */,
+				B58E9988277380CE00BA3228 /* CustomSlider.swift in Sources */,
 				B5CD574B2750CEDC00B9FB61 /* APIImage.swift in Sources */,
 				B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */,
 				B5B34933270E207C00E7DE1C /* AppDelegate.swift in Sources */,
@@ -528,6 +538,7 @@
 				B53E5D8A275B63F2004E2B48 /* SearchMusicController.swift in Sources */,
 				B557706C27601CF60043BC73 /* PlayerViewController.swift in Sources */,
 				B5E6B90B2766600F00D669FB /* BaseHeaderView.swift in Sources */,
+				B58E998A27738A3D00BA3228 /* TimeFormatter.swift in Sources */,
 				B5CD57452750CC8200B9FB61 /* AudioTrackResponse.swift in Sources */,
 				B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */,
 				B55458B8276BBB5F0030A4ED /* test.swift in Sources */,
@@ -540,6 +551,7 @@
 				B5FDF24327119F4100B1AF38 /* SignInViewController.swift in Sources */,
 				B51FA3792752142D00089509 /* SignUpViewModel.swift in Sources */,
 				B5F04D132751628D00850A2D /* SignInViewModel.swift in Sources */,
+				B58E998E2773C08F00BA3228 /* UIButton+Extension.swift in Sources */,
 				B51F134427424F3E00F44593 /* InputCell.swift in Sources */,
 				B5AEE6842741106E00361C1C /* Constraints+Extension.swift in Sources */,
 				B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */,

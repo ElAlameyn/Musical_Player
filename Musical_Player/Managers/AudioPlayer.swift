@@ -24,9 +24,6 @@ final class AudioPlayer {
 
   public func playTrack() {
     player?.pause()
-    
-    guard let AVCurrentItem = AVCurrentItem else { return }
-    
     player = AVPlayer(playerItem: AVCurrentItem)
     player?.play()
   }
@@ -40,11 +37,7 @@ final class AudioPlayer {
     playerQueue?.play()
   }
   
-  public func pause() {
-    player?.pause()
-    player = nil
-  }
-  
+
   public func playNext() {
     playerQueue?.pause()
     player = nil
@@ -63,11 +56,13 @@ final class AudioPlayer {
     playTrack()
   }
 
-  public func exchange() {
+  public func exchange() -> Bool {
     if player?.timeControlStatus == .paused {
       player?.play()
+      return true
     } else {
       player?.pause()
+      return false
     }
   }
   
