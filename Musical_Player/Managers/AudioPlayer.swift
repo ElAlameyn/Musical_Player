@@ -40,6 +40,11 @@ final class AudioPlayer {
     playerQueue?.play()
   }
   
+  public func pause() {
+    player?.pause()
+    player = nil
+  }
+  
   public func playNext() {
     playerQueue?.pause()
     player = nil

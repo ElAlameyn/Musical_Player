@@ -30,7 +30,6 @@ class TrackViewCell: UITableViewCell {
     subtitle.font = .preferredFont(forTextStyle: .callout, compatibleWith: .current)
     subtitle.numberOfLines = 0
     
-
     contentView.addSubview(subtitle)
     
     subtitle.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 80, bottom: -10, right: 0))
@@ -40,9 +39,9 @@ class TrackViewCell: UITableViewCell {
   private func addImageView() {
     contentView.addSubview(imageTrackView)
     
+    imageTrackView.layer.cornerRadius = 0
     imageTrackView.translatesAutoresizingMaskIntoConstraints = false
-    imageTrackView.layer.cornerRadius = 5
-    
+
     
     imageTrackView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
     imageTrackView.addCenterConstraints(exclude: .axisX)

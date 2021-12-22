@@ -42,7 +42,6 @@ final class PlayerControlsView: UIView {
   
   @objc func didSlideSlider(_ slider: UISlider) {
     let value = slider.value
-//    delegate?.PLayerControlsView(self, didSlideSlider: value)
   }
 
   

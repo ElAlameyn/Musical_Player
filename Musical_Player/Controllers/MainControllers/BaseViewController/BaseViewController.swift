@@ -5,19 +5,36 @@ import SDWebImage
 class BaseViewController: UIViewController {
   
   var tableView = UITableView()
+  
   var tracks = [AudioTrack]()
 
   var subscriber: AnyCancellable?
   
   var imageView = UIImageView()
   
+  var titleSong = UILabel()
+  
   var playerViewController: PlayerViewController?
+  
+  var currentIndexPath: IndexPath! {
+    didSet {
+      tableView.selectRow(at: currentIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+  }
+  
+  var currentTrack: AudioTrack! {
+    didSet {
+      configTableViewWith(track: currentTrack)
+    }
+  }
+  
   var currentImageURL: String = "" {
     didSet {
       imageView.sd_setImage(with: URL(string: currentImageURL))
     }
   }
   
+
 
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
@@ -30,6 +47,8 @@ class BaseViewController: UIViewController {
     addRightArrow()
     addLeftArrow()
     addPause()
+    
+    addTitleSong()
   }
   
   private func getFeaturedTrack() {
@@ -96,62 +115,109 @@ class BaseViewController: UIViewController {
     
     let darkView = UIView()
     darkView.backgroundColor = .black
-    darkView.alpha = 0.4
+    darkView.alpha = 0.65
     darkView.frame = imageView.frame
-    
     imageView.addSubview(darkView)
     
     darkView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     darkView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//    darkView.addEdgeConstraints(offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    
-    
   }
   
   private func addDownArrow() {
     let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
-    let downImageView = UIImageView(image: image)
     
-    view.addSubview(downImageView)
-    
-    downImageView.addCenterConstraints(exclude: .axisY)
-    downImageView.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    downImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    let button = UIButton()
+    button.setImage(image, for: .normal)
+    view.addSubview(button)
+
+    button.addCenterConstraints(exclude: .axisY)
+    button.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    button.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    button.addTarget(self, action: #selector(didTapDown), for: .touchUpInside)
   }
+  
+
   
   private func addPause() {
     let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
-    let downImageView = UIImageView(image: image)
     
-    view.addSubview(downImageView)
+    let button = UIButton()
+    button.setImage(image, for: .normal)
+    view.addSubview(button)
+
+    button.addCenterConstraints(exclude: .axisY)
+    button.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    button.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
     
-    downImageView.addCenterConstraints(exclude: .axisY)
-    downImageView.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    downImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
+    button.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
   }
   
   private func addRightArrow() {
     let image = UIImage(systemName: "chevron.right.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
-    let imageView = UIImageView(image: image)
+    let button = UIButton()
+    button.setImage(image, for: .normal)
+
+    view.addSubview(button)
     
-    view.addSubview(imageView)
+    button.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 150, y: 0))
+    button.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
+    button.sizeToFit()
     
-    imageView.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 150, y: 0))
-    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
+    button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
   }
   
+
+
   private func addLeftArrow() {
     let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
-    let rightButtonImageView = UIImageView(image: image)
     
-    view.addSubview(rightButtonImageView)
+    let button = UIButton()
+    button.setImage(image, for: .normal)
+    view.addSubview(button)
+
+    button.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: -150, y: -10))
+    button.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
     
-    rightButtonImageView.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: -150, y: -10))
-    rightButtonImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
+    button.addTarget(self, action: #selector(didTapPrevious), for: .touchUpInside)
+  }
+  
+  private func addTitleSong() {
+    titleSong = UILabel()
+    titleSong.text = "Choose track to play"
+    titleSong.numberOfLines = 0
+    titleSong.textAlignment = .left
+    titleSong.textColor = .white
+    titleSong.font = .preferredFont(forTextStyle: .title2)
+    
+    imageView.addSubview(titleSong)
+    titleSong.addEdgeConstraints(exclude: .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+  }
+  
+  // MARK: - Navigation Buttons
+  
+  @objc func didTapNext() {
+    if let track = tracks.after(currentTrack) {
+      self.currentTrack = track
+      self.currentIndexPath = IndexPath(row: currentIndexPath.row + 1, section: 0)
+    }
+  }
+
+  @objc func didTapPrevious() {
+    if let track = tracks.before(currentTrack) {
+      self.currentTrack = track
+      self.currentIndexPath = IndexPath(row: currentIndexPath.row - 1, section: 0)
+    }
+  }
+  
+  @objc func didTapPlayPause() {
+    AudioPlayer.shared.exchange()
+  }
+
+  @objc func didTapDown() {
   }
 }
 
@@ -163,17 +229,36 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name,
-                                                    subtitle: tracks[indexPath.row].artists.first?.name ?? "",
-                                                    imageURL: tracks[indexPath.row].album?.images.first?.url ?? "", duration: tracks[indexPath.row].duration_ms)
-    cell.viewModel = PlayerViewController.ViewModel(songName: tracks[indexPath.row].name, subtitle: tracks[indexPath.row].artists.first?.name ?? "", imageURL: tracks[indexPath.row].album?.images.first?.url ?? "",
-                                                    duration: tracks[indexPath.row].duration_ms)
+    let track = tracks[indexPath.row]
+    
+    cell.viewModel = PlayerViewController.ViewModel(
+      songName: track.name,
+      subtitle: track.artists.first?.name ?? "",
+      imageURL: track.album?.images.first?.url ?? "",
+      duration: track.duration_ms)
+    
     return cell
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    currentTrack = tracks[indexPath.row]
+    currentIndexPath = indexPath
 //    selectAndPlayChosenTrack(track: tracks[indexPath.row])
-    currentImageURL = tracks[indexPath.row].album?.images.first?.url ?? ""
+  }
+  
+  private func configTableViewWith(track: AudioTrack?) {
+    
+    guard let track = track else {
+      return
+    }
+
+    currentImageURL = track.album?.images.first?.url ?? ""
+    titleSong.text = track.name
+    
+    AudioPlayer.shared.tracks = tracks
+    AudioPlayer.shared.track = track
+    
+    AudioPlayer.shared.playTrack()
   }
   
   private func selectAndPlayChosenTrack(track: AudioTrack) {
