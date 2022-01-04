@@ -6,6 +6,7 @@ import CoreText
 class SpotifyAPI {
   
   static let shared = SpotifyAPI()
+ 
   var subscriber: AnyCancellable?
   
   enum Const {
@@ -14,7 +15,7 @@ class SpotifyAPI {
     static let recommendedGenres = "/recommendations/available-genre-seeds"
     static let recommendations = "/recommendations?limit=40"
   }
-  
+
   
   enum ApiError: Error {
     case error(Error)

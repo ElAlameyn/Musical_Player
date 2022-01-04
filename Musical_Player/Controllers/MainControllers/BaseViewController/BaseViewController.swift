@@ -10,6 +10,7 @@ class BaseViewController: UIViewController {
   private var imageView = UIImageView()
   private var titleSong = UILabel()
   private var playerViewController: PlayerViewController?
+  private var currentPlayablePosition: Float = 0
   
   var isPlaying = false
 
@@ -27,7 +28,8 @@ class BaseViewController: UIViewController {
   private var currentTrack: AudioTrack! {
     didSet {
       configTableViewWith(track: currentTrack)
-      configSlider(duration: Float(currentTrack.duration_ms), currentPosition: 0)
+      currentPlayablePosition = 0
+      configSlider(duration: Float(currentTrack.duration_ms))
     }
   }
   
@@ -37,11 +39,11 @@ class BaseViewController: UIViewController {
     }
   }
   
-
-
+  
+  
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
-
+    
     configTableView()
     getFeaturedTrack()
     
@@ -135,14 +137,14 @@ class BaseViewController: UIViewController {
     let button = UIButton()
     button.setImage(image, for: .normal)
     view.addSubview(button)
-
+    
     button.addCenterConstraints(exclude: .axisY)
     button.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     button.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
     button.addTarget(self, action: #selector(didTapDown), for: .touchUpInside)
   }
   
-
+  
   
   private func addPause() {
     let image = UIImage(systemName: "pause.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(40)))?
@@ -151,7 +153,7 @@ class BaseViewController: UIViewController {
     pauseButton = UIButton()
     pauseButton.setImage(image, for: .normal)
     view.addSubview(pauseButton)
-
+    
     pauseButton.addCenterConstraints(exclude: .axisY)
     pauseButton.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     pauseButton.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -45).isActive = true
@@ -164,7 +166,7 @@ class BaseViewController: UIViewController {
       .withTintColor(.white, renderingMode: .alwaysOriginal)
     let button = UIButton()
     button.setImage(image, for: .normal)
-
+    
     view.addSubview(button)
     
     button.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: 150, y: 0))
@@ -174,8 +176,8 @@ class BaseViewController: UIViewController {
     button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
   }
   
-
-
+  
+  
   private func addLeftArrow() {
     let image = UIImage(systemName: "chevron.backward.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
@@ -183,7 +185,7 @@ class BaseViewController: UIViewController {
     let button = UIButton()
     button.setImage(image, for: .normal)
     view.addSubview(button)
-
+    
     button.addCenterConstraints(exclude: .axisY, offset: CGPoint(x: -150, y: -10))
     button.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -50).isActive = true
     
@@ -209,7 +211,7 @@ class BaseViewController: UIViewController {
     let scaledImage = renderer.image { _ in
       image?.draw(in: CGRect(origin: .zero, size: imageSize))
     }
-
+    
     slider.setThumbImage(scaledImage, for: .normal)
     slider.setThumbImage(scaledImage, for: .normal)
     slider.value = 0
@@ -220,25 +222,27 @@ class BaseViewController: UIViewController {
     slider.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10))
     slider.sizeToFit()
     slider.layer.zPosition = 2
-    
-//    slider.addTarget(self, action: #selector(sliderStop), for: .editingChanged)
   }
   
   // MARK: - Slider Configuration
   
-  private func configSlider(duration: Float, currentPosition: Float) {
+  private func configSlider(duration: Float) {
     slider.maximumValue = duration / 1000
-    slider.value = currentPosition
-    
+    slider.value = currentPlayablePosition
+
     sliderTimer?.invalidate()
     sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
       guard let slider = self?.slider else {
         timer.invalidate()
+        self?.currentPlayablePosition = 0
         return
       }
+      
       if slider.value != slider.maximumValue {
         slider.setValue(slider.value + 1, animated: true)
+        self?.currentPlayablePosition += 1
       } else {
+        self?.currentPlayablePosition = 0
         timer.invalidate()
       }
     }
@@ -250,51 +254,56 @@ class BaseViewController: UIViewController {
   
   private func continueSliderMoving() {
     sliderTimer?.invalidate()
-   sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+    slider.value = Float(AudioPlayer.shared.currentPlayableTime ?? Double(currentPlayablePosition))
+    sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
       guard let slider = self?.slider else {
+        self?.currentPlayablePosition = 0
         timer.invalidate()
         return
       }
       if slider.value != slider.maximumValue {
         slider.setValue(slider.value + 1, animated: true)
       } else {
+        self?.currentPlayablePosition = 0
         timer.invalidate()
       }
     }
   }
-
+  
   // MARK: - Navigation Buttons
-  
 
-  
   @objc func didTapNext() {
-      pauseButton.setFor(imageName: "pause.circle")
+    pauseButton.setFor(imageName: "pause.circle")
     if currentTrack != nil, let track = tracks.after(currentTrack) {
+      isPlaying = true
       self.currentTrack = track
       self.currentIndexPath = IndexPath(row: currentIndexPath.row + 1, section: 0)
     }
   }
-
+  
   @objc func didTapPrevious() {
-      pauseButton.setFor(imageName: "pause.circle")
+    pauseButton.setFor(imageName: "pause.circle")
     if currentTrack != nil, let track = tracks.before(currentTrack) {
+      isPlaying = true
       self.currentTrack = track
       self.currentIndexPath = IndexPath(row: currentIndexPath.row - 1, section: 0)
     }
   }
   
-
+  
   @objc func didTapPlayPause() {
-    isPlaying.toggle()
-    if !isPlaying {
+    if isPlaying {
       sliderStop()
       pauseButton.setFor(imageName: "play.circle")
+      AudioPlayer.shared.pause()
     } else {
       continueSliderMoving()
       pauseButton.setFor(imageName: "pause.circle")
+      AudioPlayer.shared.play()
     }
+    isPlaying.toggle()
   }
-
+  
   @objc func didTapDown() {
     
   }
@@ -305,7 +314,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     tracks.count
   }
-
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: TrackViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
     let track = tracks[indexPath.row]
@@ -322,12 +331,12 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     currentTrack = tracks[indexPath.row]
     currentIndexPath = indexPath
-//    selectAndPlayChosenTrack(track: tracks[indexPath.row])
+    //    selectAndPlayChosenTrack(track: tracks[indexPath.row])
     let timeFormatter = TimeFormatter()
     print(timeFormatter.getFormattedDurationString(trackDuration: tracks[indexPath.row].duration_ms as NSNumber))
     
     isPlaying = true
-//    configSlider(duration: Float(tracks[indexPath.row].duration_ms), currentPosition: 0)
+    //    configSlider(duration: Float(tracks[indexPath.row].duration_ms), currentPosition: 0)
   }
   
   private func configTableViewWith(track: AudioTrack?) {
@@ -335,7 +344,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     guard let track = track else {
       return
     }
-
+    
     currentImageURL = track.album?.images.first?.url ?? ""
     titleSong.text = track.name
     
@@ -346,14 +355,14 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   private func selectAndPlayChosenTrack(track: AudioTrack) {
-
+    
     AudioPlayer.shared.tracks = tracks
     AudioPlayer.shared.track = track
     
     let playback = PlayerPresenter(with: track)
     
     AudioPlayer.shared.playTrack()
-
+    
     guard let playerViewController = playback.playerViewController else { return }
     present(UINavigationController(rootViewController: playerViewController),
             animated: true,

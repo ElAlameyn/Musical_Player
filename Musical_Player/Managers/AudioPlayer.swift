@@ -9,7 +9,11 @@ final class AudioPlayer {
   
   var track: AudioTrack?
   var tracks = [AudioTrack]()
-  
+
+  var currentPlayableTime: Double? {
+    AVCurrentItem?.currentTime().seconds
+  }
+
   var AVitems: [AVPlayerItem] {
     tracks.compactMap { track in
       guard let url = URL(string: track.preview_url ?? "") else { return nil }
@@ -55,15 +59,13 @@ final class AudioPlayer {
     self.track = track
     playTrack()
   }
-
-  public func exchange() -> Bool {
-    if player?.timeControlStatus == .paused {
-      player?.play()
-      return true
-    } else {
-      player?.pause()
-      return false
-    }
+  
+  public func play() {
+    player?.play()
+  }
+  
+  public func pause() {
+    player?.pause()
   }
   
   public func changeVolumeWith(_ value: Float) {

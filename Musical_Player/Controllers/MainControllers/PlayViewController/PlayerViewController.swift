@@ -5,6 +5,7 @@ class PlayerViewController: UIViewController {
   
   private let controllerView = PlayerControlsView()
   private let imageView = UIImageView()
+  private var isPlaying = false
   
   var viewModel: ViewModel? {
     didSet {
@@ -84,20 +85,19 @@ extension PlayerViewController: PlayerControlsViewDelegate {
     var duration: Int
   }
   
-  func PLayerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float) {
+  func playerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float) {
     AudioPlayer.shared.changeVolumeWith(value)
   }
 
-  func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {
-    AudioPlayer.shared.exchange()
+  func playerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {
   }
   
-  func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView) {
+  func playerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView) {
     AudioPlayer.shared.playNext()
     getNextViewModel?()
   }
 
-  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
+  func playerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView) {
     AudioPlayer.shared.playPrevious()
     getPreviousViewModel?()
   }

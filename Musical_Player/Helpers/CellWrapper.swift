@@ -7,6 +7,7 @@ struct CellWrapper {
     cellInfo: InputCell.CellInfo,
     output: @escaping (_ text: String, _ key: String) -> Void
   ) -> CellWrapper {
+    
     CellWrapper { tableView, indexPath, info in
       let cell: InputCell = tableView.dequeueReusableCell(indexPath: indexPath)
         

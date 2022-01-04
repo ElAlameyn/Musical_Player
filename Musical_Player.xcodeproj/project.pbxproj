@@ -25,7 +25,6 @@
 		B54E0D732770DC530064D540 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B54E0D722770DC530064D540 /* KeychainSwift */; };
 		B54E0D752770DC580064D540 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = B54E0D742770DC580064D540 /* SDWebImage */; };
 		B55458B6276BBA710030A4ED /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55458B5276BBA710030A4ED /* SearchResponse.swift */; };
-		B55458B8276BBB5F0030A4ED /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55458B7276BBB5F0030A4ED /* test.swift */; };
 		B55458BA276BC1A50030A4ED /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55458B9276BC1A50030A4ED /* PlayerPresenter.swift */; };
 		B555AC7A2744300C00365376 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555AC792744300C00365376 /* AuthViewController.swift */; };
 		B557706927601C110043BC73 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B557706827601C110043BC73 /* AudioPlayer.swift */; };
@@ -34,7 +33,6 @@
 		B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568C44C2757CD800001CAD3 /* CellWrapper.swift */; };
 		B56FCADF271C61F4002CEA5E /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56FCADE271C61F4002CEA5E /* assets.xcassets */; };
 		B580030F276948DE009AF35F /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580030E276948DE009AF35F /* Validator.swift */; };
-		B58E9988277380CE00BA3228 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E9987277380CE00BA3228 /* CustomSlider.swift */; };
 		B58E998A27738A3D00BA3228 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E998927738A3D00BA3228 /* TimeFormatter.swift */; };
 		B58E998E2773C08F00BA3228 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58E998D2773C08F00BA3228 /* UIButton+Extension.swift */; };
 		B597C2AE274EBFC100FD9819 /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597C2AD274EBFC100FD9819 /* LoginHeaderView.swift */; };
@@ -95,7 +93,6 @@
 		B53E5D86275B638E004E2B48 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B53E5D89275B63F2004E2B48 /* SearchMusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicController.swift; sourceTree = "<group>"; };
 		B55458B5276BBA710030A4ED /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
-		B55458B7276BBB5F0030A4ED /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		B55458B9276BC1A50030A4ED /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
 		B555AC792744300C00365376 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B557706827601C110043BC73 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -104,7 +101,6 @@
 		B568C44C2757CD800001CAD3 /* CellWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWrapper.swift; sourceTree = "<group>"; };
 		B56FCADE271C61F4002CEA5E /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		B580030E276948DE009AF35F /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		B58E9987277380CE00BA3228 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		B58E998927738A3D00BA3228 /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
 		B58E998D2773C08F00BA3228 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		B597C2AD274EBFC100FD9819 /* LoginHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
@@ -221,10 +217,9 @@
 			children = (
 				B5B34932270E207C00E7DE1C /* AppDelegate.swift */,
 				B5B34934270E207C00E7DE1C /* SceneDelegate.swift */,
-				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
 				B53E5D80275B5B1E004E2B48 /* Localizable.strings */,
 				B5E79ACA27613741004B1DEE /* music.json */,
-				B55458B7276BBB5F0030A4ED /* test.swift */,
+				B56FCADE271C61F4002CEA5E /* assets.xcassets */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -340,7 +335,6 @@
 			children = (
 				B557706E276020C20043BC73 /* PlayerControlsView.swift */,
 				B5E6B90A2766600F00D669FB /* BaseHeaderView.swift */,
-				B58E9987277380CE00BA3228 /* CustomSlider.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -527,7 +521,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B597C2B2274EC7B200FD9819 /* MemberView.swift in Sources */,
-				B58E9988277380CE00BA3228 /* CustomSlider.swift in Sources */,
 				B5CD574B2750CEDC00B9FB61 /* APIImage.swift in Sources */,
 				B5E529C4272468CC0060CEBC /* SignUpViewController.swift in Sources */,
 				B5B34933270E207C00E7DE1C /* AppDelegate.swift in Sources */,
@@ -541,7 +534,6 @@
 				B58E998A27738A3D00BA3228 /* TimeFormatter.swift in Sources */,
 				B5CD57452750CC8200B9FB61 /* AudioTrackResponse.swift in Sources */,
 				B53D0E4127425DF6007DE06F /* ButtonTableViewCell.swift in Sources */,
-				B55458B8276BBB5F0030A4ED /* test.swift in Sources */,
 				B522C2AF273D3FCE0093206A /* StorageManager.swift in Sources */,
 				B59AB0FB2750C15A00E49A8C /* ValidatorError.swift in Sources */,
 				B568C44D2757CD800001CAD3 /* CellWrapper.swift in Sources */,
@@ -734,6 +726,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_MAP_FILE_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -766,6 +759,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_MAP_FILE_PATH = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,10 +1,10 @@
 import UIKit
 
 protocol PlayerControlsViewDelegate: AnyObject {
-  func PLayerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView)
-  func PLayerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView)
-  func PLayerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView)
-  func PLayerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float)
+  func playerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView)
+  func playerControlsViewDidTapForwardButton(_ playerControlsView: PlayerControlsView)
+  func playerControlsViewDidTapBackwardButton(_ playerControlsView: PlayerControlsView)
+  func playerControlsView(_ playerControlsView: PlayerControlsView, didSlideSlider value: Float)
 }
 
 final class PlayerControlsView: UIView {
@@ -41,14 +41,13 @@ final class PlayerControlsView: UIView {
   }
   
   @objc func didSlideSlider(_ slider: UISlider) {
-    let value = slider.value
   }
 
   
   @objc private func didTapPlayPause() {
     self.isPlaying.toggle()
     
-    delegate?.PLayerControlsViewDidTapPlayPause(self)
+    delegate?.playerControlsViewDidTapPlayPause(self)
     
     let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     let play = UIImage(systemName: Constants.controlsPlayButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
@@ -58,14 +57,14 @@ final class PlayerControlsView: UIView {
   
   @objc private func didTapBack() {
     self.isPlaying = true
-    delegate?.PLayerControlsViewDidTapBackwardButton(self)
+    delegate?.playerControlsViewDidTapBackwardButton(self)
     let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     pauseButton.setImage(pause, for: .normal)
   }
   
   @objc private func didTapNext() {
     self.isPlaying = true
-    delegate?.PLayerControlsViewDidTapForwardButton(self)
+    delegate?.playerControlsViewDidTapForwardButton(self)
     let pause = UIImage(systemName: Constants.controlsPauseButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 34, weight: .regular))
     pauseButton.setImage(pause, for: .normal)
   }
@@ -99,6 +98,7 @@ final class PlayerControlsView: UIView {
     
     addSubview(subtitleLabel)
     
+
     subtitleLabel.text = "Subtitle"
     subtitleLabel.addEdgeConstraints(exclude: .bottom, .bottom, offset: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5))
     subtitleLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
