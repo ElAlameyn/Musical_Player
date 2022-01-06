@@ -11,9 +11,12 @@ class BaseViewController: UIViewController {
   private var titleSong = UILabel()
   private var playerViewController: PlayerViewController?
   private var currentPlayablePosition: Float = 0
-  
-  var isPlaying = false
+  private var downArrow = UIButton()
 
+  var isPlaying = false
+  
+  private var isHiddenTableView = false
+  
   private let slider = UISlider()
   private var sliderTimer: Timer?
   
@@ -43,7 +46,7 @@ class BaseViewController: UIViewController {
   
   override func viewDidLoad() {
     view.backgroundColor = .systemBackground
-    
+
     configTableView()
     getFeaturedTrack()
     
@@ -53,6 +56,7 @@ class BaseViewController: UIViewController {
     addLeftArrow()
     addPause()
     
+
     addTitleSong()
     
     addSlider()
@@ -98,50 +102,51 @@ class BaseViewController: UIViewController {
     tableView.dataSource = self
     tableView.delegate = self
     tableView.layer.cornerRadius = 20
-    tableView.layer.borderColor = UIColor.black.cgColor
+    tableView.layer.borderColor = UIColor.systemTeal.cgColor
+    tableView.layer.borderWidth = 1
     
     tableView.register(TrackViewCell.self)
     
     view.addSubview(tableView)
     
-    tableView.addEdgeConstraints(offset: UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0))
-    
+    tableView.frame = CGRect(x: 0, y: 200, width: view.frame.width, height: view.frame.height - 200)
     tableView.tableHeaderView = BaseHeaderView()
   }
   
   private func addImageView() {
     view.addSubview(imageView)
     
-    imageView.addEdgeConstraints(exclude: .bottom, .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
-    imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//    imageView.addEdgeConstraints(exclude: .bottom, .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+//    imageView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 20).isActive = true
+//    imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
+    
     imageView.layer.cornerRadius = 20
-    imageView.contentMode = .scaleAspectFill
+    imageView.contentMode = .scaleAspectFit
     imageView.layer.zPosition = -1
     imageView.alpha = 0.9
     
     let darkView = UIView()
     darkView.backgroundColor = .black
-    darkView.alpha = 0.65
+    darkView.alpha = 0.3
     darkView.frame = imageView.frame
     imageView.addSubview(darkView)
-    
-    darkView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+
+    darkView.addEdgeConstraints(exclude: .top, offset: UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0))
     darkView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
   }
   
   private func addDownArrow() {
-    let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+    let image = UIImage(systemName: "chevron.compact.up", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
       .withTintColor(.white, renderingMode: .alwaysOriginal)
     
-    let button = UIButton()
-    button.setImage(image, for: .normal)
-    view.addSubview(button)
+    downArrow.setImage(image, for: .normal)
+    view.addSubview(downArrow)
     
-    button.addCenterConstraints(exclude: .axisY)
-    button.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    button.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
-    button.addTarget(self, action: #selector(didTapDown), for: .touchUpInside)
+    downArrow.addCenterConstraints(exclude: .axisY)
+    downArrow.addEdgeConstraints(exclude: .top, .left, .right, offset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    downArrow.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    downArrow.addTarget(self, action: #selector(didTapDown), for: .touchUpInside)
   }
   
   
@@ -206,7 +211,7 @@ class BaseViewController: UIViewController {
   
   private func addSlider() {
     let image = UIImage(named: "sliderCircle")
-    let imageSize = CGSize(width: 20, height: 20)
+    let imageSize = CGSize(width: 10, height: 10)
     let renderer = UIGraphicsImageRenderer(size: imageSize)
     let scaledImage = renderer.image { _ in
       image?.draw(in: CGRect(origin: .zero, size: imageSize))
@@ -222,6 +227,7 @@ class BaseViewController: UIViewController {
     slider.addEdgeConstraints(exclude: .top, .bottom, offset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10))
     slider.sizeToFit()
     slider.layer.zPosition = 2
+    slider.tintColor = .white
   }
   
   // MARK: - Slider Configuration
@@ -254,7 +260,7 @@ class BaseViewController: UIViewController {
   
   private func continueSliderMoving() {
     sliderTimer?.invalidate()
-    slider.value = Float(AudioPlayer.shared.currentPlayableTime ?? Double(currentPlayablePosition))
+    slider.value = Float(currentPlayablePosition)
     sliderTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
       guard let slider = self?.slider else {
         self?.currentPlayablePosition = 0
@@ -305,7 +311,31 @@ class BaseViewController: UIViewController {
   }
   
   @objc func didTapDown() {
-    
+    isHiddenTableView.toggle()
+    if !isHiddenTableView {
+      UIView.animate(withDuration: 1.0) {
+        self.tableView.frame = CGRect(x: 0, y: 200, width: self.view.frame.width, height: self.view.frame.height - 200)
+        self.imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200)
+      } completion: { success in
+        if success {
+          let image = UIImage(systemName: "chevron.compact.up", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+            .withTintColor(.white, renderingMode: .alwaysOriginal)
+          self.downArrow.setImage(image, for: .normal)
+        }
+      }
+    } else {
+      UIView.animate(withDuration: 1.0) {
+        self.tableView.frame.size.height -= self.tableView.frame.size.height
+        self.imageView.frame = self.view.bounds
+      } completion: { success in
+        if success {
+          let image = UIImage(systemName: "chevron.compact.down", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(30)))?
+            .withTintColor(.white, renderingMode: .alwaysOriginal)
+          self.downArrow.setImage(image, for: .normal)
+          self.imageView.contentMode = .scaleAspectFit
+        }
+      }
+    }
   }
 }
 
@@ -358,7 +388,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource {
     
     AudioPlayer.shared.tracks = tracks
     AudioPlayer.shared.track = track
-    
+
     let playback = PlayerPresenter(with: track)
     
     AudioPlayer.shared.playTrack()

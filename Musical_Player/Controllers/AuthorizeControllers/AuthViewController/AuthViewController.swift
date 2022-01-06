@@ -34,8 +34,6 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
       
       else { return }
       
-#warning("add 2 more parameters to implement PCKE extension")
-      
       webView.load(URLRequest(url: url))
     }
   

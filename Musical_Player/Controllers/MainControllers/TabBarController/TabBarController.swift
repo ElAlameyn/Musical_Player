@@ -2,18 +2,18 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-      self.navigationItem.setHidesBackButton(true, animated: true)
-      setViewControllers([addBaseVC(), addCollectionVC()], animated: true)
-      
-      tabBar.isTranslucent = true
-
-    }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    tabBar.tintColor = .black
 
+    self.navigationItem.setHidesBackButton(true, animated: true)
+    setViewControllers([addBaseVC(), addCollectionVC()], animated: true)
+    
+  }
+  
+  
   private func addBaseVC() -> UIViewController {
     let baseVC = BaseViewController()
     baseVC.tabBarItem.title = Localizable.tabBarHomeTitle
